@@ -26,23 +26,7 @@ set_config "$API_USER" "$API_PASS"
 # Check if the user profile exists, if not log in with default credentials and create it
 /app/nginx_proxy_manager_cli.sh --check-token
 
-if [ $? -ne 0 ]; then
-    echo "Credentials invalid. Soon we will create a user for you but for now please go to the web UI and create a user.
-    First: sign in using the default credentials
-      Username: admin@example.com
-      Password: changeme
-    Second: create a new user with the following credentials:
-      Full name: $API_USER
-      Nickname: $API_USER
-      Email: $API_USER
-      Password: $API_PASS
-    Then:
-      Run the following command:
-        docker compose up --build proxy-bootstrap
-      To invoke this script again
-"
-    exit 1
-    
+if [ $? -ne 0 ]; then  
     echo "Token is not valid - logging in with default credentials"
 
     # Create script config file with default credentials
