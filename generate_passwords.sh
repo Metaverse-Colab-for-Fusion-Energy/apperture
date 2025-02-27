@@ -40,3 +40,16 @@ echo "
 sed "s|\$URL|$(grep URL .env | cut -d '=' -f2)|g" \
     config/authelia/snippets/authelia-authrequest.conf.template \
     > config/authelia/snippets/authelia-authrequest.conf
+
+# if URL is localtest.me, generate certificates using mkcert
+DOMAIN=$(cat .env | grep URL | cut -d '=' -f2)
+if [ "$DOMAIN" == "localtest.me" ]; then
+    # Check if mkcert is installed
+    if ! command -v mkcert &> /dev/null; then
+        echo "mkcert could not be found. Please install it and run this script again."
+        exit 1
+    fi
+    
+    mkcert -install
+    mkcert "$DOMAIN" "*.$DOMAIN" "127.0.0.1" "::1"
+fi
