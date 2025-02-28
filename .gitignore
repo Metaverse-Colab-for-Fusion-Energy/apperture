@@ -3,3 +3,4 @@
 config/authelia/config/authelia.log
 config/authelia/config/notification.txt
 config/authelia/snippets/authelia-authrequest.conf
+*.pem

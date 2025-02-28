@@ -13,6 +13,8 @@ secrets:
     file: ${PWD}/config/lldap/secrets/LLDAP_PASSWORD
   LLDAP_STORAGE_PASSWORD:
     file: ${PWD}/config/lldap/secrets/LLDAP_STORAGE_PASSWORD
+  PROXY_PASS:
+    file: ${PWD}/config/proxy/secrets/PROXY_PASSWORD
 
 services:
   proxy:
@@ -37,7 +39,22 @@ services:
       test: ["CMD", "/bin/check-health"]
       interval: 10s
       timeout: 3s
-        
+
+  proxy-bootstrap:
+    build:
+      context: proxy-bootstrap
+      dockerfile: Dockerfile
+    container_name: apperture-proxy-bootstrap
+    secrets: [PROXY_PASS]
+    environment:
+      DOMAIN: ${URL}
+      NGINX_IP: proxy
+      API_USER: ${PROXY_USER}
+    depends_on:
+      proxy:
+        condition: service_healthy
+    networks:
+      apperture:
   whoami:
     container_name: apperture-whoami
     image: docker.io/traefik/whoami
