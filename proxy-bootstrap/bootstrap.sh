@@ -59,6 +59,42 @@ else
     echo "Credentials valid"
 fi
 
+# Check if the config file exists and is correct JSON
+if [ ! -f "$CONFIG_FILE" ]; then
+    echo "ERROR: Config file not found: $CONFIG_FILE"
+    exit 1
+fi
+if ! jq empty "$CONFIG_FILE" > /dev/null 2>&1; then
+    echo "ERROR: Config file is not valid JSON: $CONFIG_FILE"
+    exit 1
+fi
+# Validate required fields in the config file
+ERR=0
+PH_i=0
+while read -r host; do
+    PH_i=$((PH_i + 1))
+    FORWARD_HOST=$(echo "$host" | jq -r '.forward_host')
+    FORWARD_PORT=$(echo "$host" | jq -r '.forward_port')
+    FQDN=$(echo "$host" | jq -r '.fqdn')
+    SUBDOMAIN=$(echo "$host" | jq -r '.subdomain')
+    if { [ -z "$FORWARD_HOST" ] || [ "$FORWARD_HOST" == "null" ]; }; then
+        echo "ERROR: Proxy host $PH_i has no forward_host. The forward_host must be defined for each proxy host."
+        ERR=1
+    fi
+    if { [ -z "$FORWARD_PORT" ] || [ "$FORWARD_PORT" == "null" ]; }; then
+        echo "ERROR: Proxy host $PH_i has no forward_port. The forward_port must be defined for each proxy host"
+        ERR=1
+    fi
+    if { [ -z "$FQDN" ] || [ "$FQDN" == "null" ]; } && { [ -z "$SUBDOMAIN" ] || [ "$SUBDOMAIN" == "null" ]; }; then
+        echo "ERROR: Proxy host $PH_i has no subdomain and no fqdn. One of the two must be defined for each proxy host"
+        ERR=1
+    fi
+done < <(jq -c '.proxy_hosts[]' "$CONFIG_FILE")
+if [ $ERR -ne 0 ]; then
+    echo "ERROR: Invalid config file: $CONFIG_FILE"
+    exit 1
+fi
+
 # Read config file and add proxy hosts
 jq -c '.proxy_hosts[]' "$CONFIG_FILE" | while read -r host; do
     FULL_DOMAIN=$(echo "$host" | jq -r '.fqdn')
