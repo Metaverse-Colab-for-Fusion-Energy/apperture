@@ -282,7 +282,7 @@ Now save the token into a file `config/cloudflared/.secret_token` in your projec
 
 ```shell
 mkdir -p config/cloudflared/
-echo  config/cloudflared/.secret_token
+echo "TUNNEL_TOKEN=<your_token_here>" config/cloudflared/.secret_token
 ```
 
 The file should look like this:
@@ -311,12 +311,36 @@ You can now launch the cloudflared service with `docker-compose up -d cloudflare
 
 **Note**: Each domain you add to cloudflare also needs to be added in the proxy, and protected in the "Advanced" tab (See the [Protect the Route](#protect-the-route) section).
 
-#### Add hostnames to cloudflare
+#### Add wildcard hostname to cloudflare
+For testing purposes, you may want to add a wildcard hostname to cloudflare.
+This will allow you to access any subdomain of your domain without having to add each one individually.
+If you prefer to restrict access to specific subdomains, you can instead look at the [Add individual hostnames to cloudflare](#add-individual-hostnames-to-cloudflare) section.
+
+To add a wildcard hostname:
+ - Go to Tunnels.
+ - Make a note of the tunnel id.
+ - Select your tunnel, and click on "Edit"
+ - Go to the "Public Hostname" tab, and click on "Add a public hostname".
+   - **Subdomain:** *
+   - **Domain:** mylovelydomain.org
+   - **Service Type:** HTTP
+   - **URL:** apperture-proxy
+ - From the cloudflare dashboard, select your domain.
+ - On the left hand side nav-bar, go to the "DNS" tab.
+ - In the DNS management box, select "add record":
+   - **Type:** CNAME
+   - **Name:** *
+   - **Target:** `<your_tunnel_id>.cfargotunnel.com`
+   - **TTL:** Auto
+   - **Proxy status:** Proxied
+You can now access any subdomain of your domain, for example `foo.mylovelydomain.org`.
+
+#### Add individual hostnames to cloudflare
 
 You will now be able to add Public Hostnames.
 
-- Go to the tunnels page
-- Add a public hostname
+- Go to Tunnels, select your tunnel, and click on "Edit".
+- Go to the "Public Hostname" tab, and click on "Add a public hostname".
   - **Subdomain:** whoami
   - **Domain:** mylovelydomain.org
   - **Service Type:** HTTP
