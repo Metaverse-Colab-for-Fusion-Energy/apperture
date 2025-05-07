@@ -105,6 +105,9 @@ jq -c '.proxy_hosts[]' "$CONFIG_FILE" | while read -r host; do
     FORWARD_HOST=$(echo "$host" | jq -r '.forward_host')
     FORWARD_PORT=$(echo "$host" | jq -r '.forward_port')
     ADVANCED_CONFIG=$(echo "$host" | jq -r '.advanced_config')
+    if [ "$ADVANCED_CONFIG" == "null" ]; then
+        ADVANCED_CONFIG=""
+    fi
 
     echo "Configuring: $FULL_DOMAIN -> $FORWARD_HOST:$FORWARD_PORT"
 
