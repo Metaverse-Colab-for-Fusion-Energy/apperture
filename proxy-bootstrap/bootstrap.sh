@@ -61,8 +61,11 @@ fi
 
 # Read config file and add proxy hosts
 jq -c '.proxy_hosts[]' "$CONFIG_FILE" | while read -r host; do
-    SUBDOMAIN=$(echo "$host" | jq -r '.subdomain')
-    FULL_DOMAIN=$SUBDOMAIN.$DOMAIN
+    FULL_DOMAIN=$(echo "$host" | jq -r '.fqdn')
+    if { [ -z "$FULL_DOMAIN" ] || [ "$FULL_DOMAIN" == "null" ]; }; then
+        SUBDOMAIN=$(echo "$host" | jq -r '.subdomain')
+        FULL_DOMAIN=$SUBDOMAIN.$DOMAIN
+    fi
     FORWARD_HOST=$(echo "$host" | jq -r '.forward_host')
     FORWARD_PORT=$(echo "$host" | jq -r '.forward_port')
     ADVANCED_CONFIG=$(echo "$host" | jq -r '.advanced_config')
