@@ -7,13 +7,21 @@ Apperture is a secure web portal for protecting web applications. It takes the f
 To deploy this project, you will need a domain name. 
 We suggest cloudflare for registering domains but many other services are available.
 
-For local development, you can use the domain `localtest.me` which resolves to your local machine.
-
 To run Apperture, you will need:
+- Git
 - Docker
 - Docker-compose
 
 ## Getting started
+
+### Clone the repository
+
+To get started, get the code from github:
+
+```shell
+git clone git@github.com:UoMResearchIT/apperture.git
+cd apperture
+```
 
 ### Create env file
 
@@ -24,26 +32,24 @@ cp env.template .env
 nano .env
 ```
 
-Edit URL to your desired value: a real domain name or `localtest.me` for local development.
+Edit the URL to your domain, and the username for your proxy server:
 
 ```diff
 - URL=foobar.org
 + URL=mylovelydomain.org
-```
-
-```diff
 - PROXY_USER=an_email_address@foo.bar
 + PROXY_USER=your_email@domain.org
 ```
 
-### Setup the environment and obtain admin credentials
+### Generate admin credentials
 
+Run the script to generate secure, random passwords and configure your apperture environment.
 ```shell
 ./generate_passwords.sh
 ```
 
-The script will print admin credentials, that you will need to setup users and routes in the proxy.
-
+The script will print admin credentials, that you will need to access the proxy manager.
+The output should look like this:
 ```shell
 Generating ...
 Generating ...
@@ -65,66 +71,124 @@ LLDAP admin credentials:
 **Securly save these credientials for later** 
 We suggest using a password manger. 
 
+### Configure the proxy hosts
+
+The proxy hosts in the proxy-bootstrap/config.json file are added to the nginx-proxy configuration when apperture is launched.
+
+You can add your own hosts to the config.json file.
+Make sure to use the same format as the existing hosts, that is:
+ - forward_host: the name of the docker container running the service
+ - forward_port: the port the service is running on
+ - advanced_config: copy and paste this line to make that service protected by authelia.
+ - subdomain: the subdomain you want to use for the service. This will be prepended to the domain you set in the `.env` file. You may instead indicate the fqdn.
+ - fqdn: the fully qualified domain name (full url) of the service. If set, the subdomain will be ignored.
+
+For example, if in the `.env` file you used `URL=mylovelydomain.org`, adding this:
+```json
+    {
+      "subdomain": "my_app",
+      "forward_host": "my_app_flask",
+      "forward_port": 8000,
+      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+    }
+```
+will add `my_app.mylovelydomain.org` to the proxy hosts, and will protect it with authelia.
+
+As another example, you could add:
+```json
+    {
+      "fqdn": "my_lovely_app_proxy.anotherdomain.org",
+      "forward_host": "apperture_proxy",
+      "forward_port": 81,
+    }
+```
+will add `my_lovely_app_proxy.anotherdomain.org` to the proxy hosts, and will not protect it with authelia.
+
 ### Launch apperture
 
+You are now ready to launch apperture. Do so with:
+
 ```shell
-docker compose up
+docker compose up -d && docker compose logs -f
 ```
 
-## Tutorial
+and make sure no errors are thrown. you can exit the logs with `Ctrl+C`.
 
-This tutorial will guide you through the process of setting up a secure web portal using Apperture, on your local machine.
+### Load ssl certificates
+
+By default apperture requires ssl certificates for the protected routes.
+
+At the moment, these are not automatically generated nor loaded into the proxy. You will need to do this manually.
+
+You can generate a self-signed certificate using:
+```shell
+sudo apt install mkcert
+mkcert -install
+mkcert "<your_domain_here>" "*.your_domain_here" "127.0.0.1" "::1"
+```
+This will generate a certificate and key in the current directory.
+
+To upload the certificate to the proxy, go to the proxy interface at `localhost:81` and login with the credentials you generated earlier.
+- Click on the `SSL Certificates` tab, click on "Add SSL Certificate", and select "Custom".
+- Choose a name for the certificate, and  upload the key and certificate.
+- Save, and go to Hosts -> Proxy Hosts.
+- Click on the three vertical dots of the route you want to add the certificate to, and click on "Edit".
+- Click on the `SSL` tab, and select the certificate you just uploaded.
+- Make sure the "Force SSL" toggle is **not** enabled, and save.
+
+You should now be able to access the route using https.
+
+
+
+
+
+
+
+<!-- ------------------------------------- Tutorials ------------------------------------- -->
+
+## Tutorial - Setting up a secure web portal wit localtest.me
+
+If you do not have a domain, for local development you can use the domain `localtest.me` which resolves to your local machine.
+
+This tutorial will guide you through the getting started section using the `localtest.me` domain.
 
 ### First steps - Setup the environment
 
-#### Clone the repository
-
-```shell
-git clone git@github.com:UoMResearchIT/apperture.git
-cd apperture
+- Clone the repository
+  ```shell
+  git clone git@github.com:UoMResearchIT/apperture.git
+  cd apperture
+  ```
+- Copy the template env file
+  ```shell
+  cp env.template .env
+  nano .env
+  ```
+- Edit the URL to `localtest.me` for local development.
+  ```diff
+  - URL=foobar.org
+  + URL=localtest.me
 ```
-
-#### Create the environment file
-
-```shell
-cp env.template .env
-nano .env
+- Set the `PROXY_USER` to your email address.
+- Now, run the script to generate passwords.
+  ```shell
+  ./generate_passwords.sh
 ```
+- Make a note of the admin credentials printed by the script, as you will need them later.
 
-Edit the URL to `localtest.me` for local development.
-
-```diff
-- URL=foobar.org
-+ URL=localtest.me
-```
-
-And remember to set the `PROXY_USER` to your email address.
-
-#### Generate passwords
-
-Now, we run the script to generate passwords.
-
-```shell
-./generate_passwords.sh
-```
-
-The script will print the admin credentials, which you will need to setup users and routes in the proxy, save these for later.
-
-#### Launch apperture
+### Launch apperture
 
 With the configuration in place, we can now launch apperture.
-
 To launch the apperture, run:
-
 ```shell
-docker compose up
+docker compose up -d && docker compose logs -f
 ```
-
 and wait for the services to start.
+Make sure no errors were raised, and exit the logs with `Ctrl+C`.
 
-#### View the proxy interface
+### View the proxy interface
 
-Go to [localtest.me:81](localtest.me:81) and login with the email address you set in the `.env` file and the password generated by the script.
+Go to [localtest.me:81](localtest.me:81) and login with the credentials printed by the script.
 
 Here you can see the routes which come pre-configured with Apperture and navigate to them if you wish.
 
@@ -136,7 +200,7 @@ When you speified `localtest.me` as the URL, the script generated a self-signed 
 
 To add the certificate to the proxy, you need to navigate to the `SSL Certificates` tab in the proxy interface and upload the certificate and key.
 
-Add `localtest.me+3.pem` to the certificate box and `localtest.me+3-key.pem` to the key box.
+Add `localtest.me+3-key.pem` to the key box and `localtest.me+3.pem` to the certificate box.
 
 #### Update the routes
 
@@ -161,6 +225,15 @@ You now have a secure web portal running on your local machine!
 You will want more than just the admin user to be able to access the portal. To add a user, go to [users.localtest.me](users.localtest.me) and login with the LDAP admin credentials generated by the script.
 
 Once logged in, you can add a user with the `Create a user` button.
+
+
+
+
+
+
+
+
+<!-- ------------------------------------- How to ---------------------------------------- -->
 
 ## How to
 
