@@ -55,6 +55,8 @@ services:
         condition: service_healthy
     networks:
       apperture:
+    volumes:
+      - ./proxy-bootstrap/config.json:/app/config.json
   whoami:
     container_name: apperture-whoami
     image: docker.io/traefik/whoami
@@ -180,6 +182,7 @@ services:
 
 networks:
   apperture:
+    name: apperture_apperture
 
 volumes:
   nginx-proxy:
