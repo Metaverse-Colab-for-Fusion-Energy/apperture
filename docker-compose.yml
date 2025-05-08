@@ -42,8 +42,10 @@ services:
 
   proxy-bootstrap:
     build:
-      context: proxy-bootstrap
-      dockerfile: Dockerfile
+      dockerfile_inline: |
+        FROM alpine:3.12
+        RUN apk add --no-cache bash curl jq
+        ENTRYPOINT ["bash", "/app/bootstrap.sh"]
     container_name: apperture-proxy-bootstrap
     secrets: [PROXY_PASS]
     environment:
@@ -55,6 +57,11 @@ services:
         condition: service_healthy
     networks:
       apperture:
+    volumes:
+      - ./proxy-bootstrap/bootstrap.sh:/app/bootstrap.sh
+      - ./proxy-bootstrap/config.json:/app/config.json
+      - ./proxy-bootstrap/nginx_proxy_manager_cli.sh:/app/nginx_proxy_manager_cli.sh
+
   whoami:
     container_name: apperture-whoami
     image: docker.io/traefik/whoami
@@ -180,6 +187,7 @@ services:
 
 networks:
   apperture:
+    name: apperture_apperture
 
 volumes:
   nginx-proxy:
