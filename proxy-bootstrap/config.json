@@ -19,9 +19,58 @@
       "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
     },
     {
+      "subdomain": "sampo",
+      "forward_host": "randall-sampo",
+      "forward_port": 3001,
+      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+    },
+    {
+      "subdomain": "galaxy",
+      "forward_host": "randall-galaxy",
+      "forward_port": 8080,
+      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+    },
+   {
+      "subdomain": "influx",
+      "forward_host": "randall-influx",
+      "forward_port": 8086,
+      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+    },
+   {
+      "subdomain": "nodered",
+      "forward_host": "randall-nodered",
+      "forward_port": 1880,
+      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+    },
+    {
+      "subdomain": "fuseki",
+      "forward_host": "randall-fuseki",
+      "forward_port": 3030,
+      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+    },
+   {
+      "subdomain": "grafana",
+      "forward_host": "randall-grafana",
+      "forward_port": 3000,
+      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+    },
+   {
+      "subdomain": "minio",
+      "forward_host": "randall-minio",
+      "forward_port": 9001,
+      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+    },
+   {
+      "subdomain": "gittea",
+      "forward_host": "randall-gittea",
+      "forward_port": 3000,
+      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+    },
+    {
       "subdomain": "proxy",
       "forward_host": "apperture-proxy",
-      "forward_port": 81
+      "forward_port": 81,
+      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
     }
   ]
 }
