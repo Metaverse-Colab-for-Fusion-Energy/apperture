@@ -17,6 +17,11 @@
       "forward_host": "apperture-ldap",
       "forward_port": 17170,
       "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+    },
+    {
+      "subdomain": "proxy",
+      "forward_host": "apperture-proxy",
+      "forward_port": 81
     }
   ]
 }
