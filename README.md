@@ -73,15 +73,16 @@ We suggest using a password manger.
 
 ### Configure the proxy hosts
 
-The proxy hosts in the proxy-bootstrap/config.json file are added to the nginx-proxy configuration when apperture is launched.
+The proxy hosts in the `proxy-bootstrap/config.json` file are added to the nginx-proxy configuration when apperture is launched.
 
 You can add your own hosts to the config.json file.
 Make sure to use the same format as the existing hosts, that is:
  - forward_host: the name of the docker container running the service
  - forward_port: the port the service is running on
  - advanced_config: copy and paste this line to make that service protected by authelia.
- - subdomain: the subdomain you want to use for the service. This will be prepended to the domain you set in the `.env` file. You may instead indicate the fqdn.
- - fqdn: the fully qualified domain name (full url) of the service. If set, the subdomain will be ignored.
+ - either:
+   - subdomain: the subdomain you want to use for the service. This will be prepended to the domain you set in the `.env` file. You may instead indicate the fqdn.
+   - fqdn: the fully qualified domain name (full url) of the service. If set, the subdomain will be ignored.
 
 For example, if in the `.env` file you used `URL=mylovelydomain.org`, adding this:
 ```json
@@ -98,7 +99,7 @@ As another example, you could add:
 ```json
     {
       "fqdn": "my_lovely_app_proxy.anotherdomain.org",
-      "forward_host": "apperture_proxy",
+      "forward_host": "apperture-proxy",
       "forward_port": 81,
     }
 ```
