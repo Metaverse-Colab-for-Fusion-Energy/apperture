@@ -1,0 +1,126 @@
+colors:
+  dark:
+    background: '#131313'
+    background-image: /assets/your/dark/bg.png
+    card-background: '#2b2b2b'
+    card-shadow: rgba(0, 0, 0, 0.4)
+    highlight-hover: '#5a95f5'
+    highlight-primary: '#3367d6'
+    highlight-secondary: '#4285f4'
+    link: '#3273dc'
+    link-hover: '#ffdd57'
+    text: '#eaeaea'
+    text-header: '#ffffff'
+    text-subtitle: '#f5f5f5'
+    text-title: '#fafafa'
+  light:
+    background: '#f5f5f5'
+    background-image: /assets/your/light/bg.png
+    card-background: '#ffffff'
+    card-shadow: rgba(0, 0, 0, 0.1)
+    highlight-hover: '#5a95f5'
+    highlight-primary: '#3367d6'
+    highlight-secondary: '#4285f4'
+    link: '#3273dc'
+    link-hover: '#363636'
+    text: '#363636'
+    text-header: '#424242'
+    text-subtitle: '#424242'
+    text-title: '#303030'
+columns: '3'
+connectivityCheck: true
+defaults:
+  colorTheme: auto
+  layout: columns
+footer: Welcome to the MCFE Dashboard
+header: true
+links:
+- icon: fab fa-github
+  name: MCFE GitHub
+  target: _blank
+  url: https://github.com/orgs/Metaverse-Colab-for-Fusion-Energy/repositories
+- icon: fa-solid fa-server
+  name: Nucleus
+  url: https://mcfe-nucleus.soe.manchester.ac.uk/
+logo: assets/logo.jpeg
+message:
+  content: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+  icon: fa fa-exclamation-triangle
+  style: is-warning
+  title: Optional message!
+organisation: MCFE
+services:
+- icon: fa-solid fa-rocket
+  items:
+  - icon: fa-solid fa-house
+    name: Home
+    subtitle: Homepage for Randall's server
+    tag: Apps
+    url: http://home.mcfe.itservices.manchester.ac.uk
+  - icon: fa-solid fa-cube
+    name: SampoUI
+    subtitle: Data Visualization
+    tag: Apps
+    url: http://sampo.mcfe.itservices.manchester.ac.uk
+  - icon: fa-solid fa-flask
+    name: Galaxy Worklfow Engine
+    subtitle: Galaxy simulation workflow engine
+    tag: Apps
+    url: http://galaxy.mcfe.itservices.manchester.ac.uk
+  - icon: fa-solid fa-database
+    name: InfluxDB
+    subtitle: Time series database
+    tag: Apps
+    url: http://influx.mcfe.itservices.manchester.ac.uk
+  - icon: fa-solid fa-vial
+    name: Node-RED
+    subtitle: Experimental Control System
+    tag: Apps
+    url: http://nodered.mcfe.itservices.manchester.ac.uk
+  - icon: fa-solid fa-database
+    name: Fuseki
+    subtitle: SPARQL endpoint for RDF data
+    tag: Apps
+    url: http://fuseki.mcfe.itservices.manchester.ac.uk
+  - icon: fa-solid fa-chart-line
+    name: Grafana
+    subtitle: Data visualization and monitoring
+    tag: Apps
+    url: http://grafana.mcfe.itservices.manchester.ac.uk
+  - icon: fa-solid fa-database
+    name: MinIO
+    subtitle: Object storage service
+    tag: Apps
+    url: http://minio.mcfe.itservices.manchester.ac.uk
+  - icon: fa-solid fa-code-branch
+    name: Gitea
+    subtitle: Self-hosted Git service
+    tag: Apps
+    url: http://gittea.mcfe.itservices.manchester.ac.uk
+  name: Apps
+- icon: fa-solid fa-cog
+  items:
+  - icon: fa-solid fa-user
+    name: Whoami
+    subtitle: Whoami service for testing
+    tag: Admin
+    url: http://whoami.mcfe.itservices.manchester.ac.uk
+  - icon: fa-solid fa-shield
+    name: Authelia
+    subtitle: Authentication
+    tag: Admin
+    url: http://authelia.mcfe.itservices.manchester.ac.uk
+  - icon: fa-solid fa-users
+    name: LDAP
+    subtitle: User Management
+    tag: Admin
+    url: http://users.mcfe.itservices.manchester.ac.uk
+  - icon: fa-solid fa-share-nodes
+    name: Proxy
+    subtitle: NginX Proxy Manager
+    tag: Admin
+    url: http://proxy.mcfe.itservices.manchester.ac.uk
+  name: Admin
+subtitle: MCFE
+theme: default
+title: LIBTRI Digital Twin Dashboard
