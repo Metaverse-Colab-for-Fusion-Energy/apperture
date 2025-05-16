@@ -55,47 +55,38 @@ services:
   - icon: fa-solid fa-house
     name: Home
     subtitle: Homepage for Randall's server
-    tag: Apps
     url: http://home.mcfe.itservices.manchester.ac.uk
   - icon: fa-solid fa-cube
     name: SampoUI
     subtitle: Data Visualization
-    tag: Apps
     url: http://sampo.mcfe.itservices.manchester.ac.uk
   - icon: fa-solid fa-flask
     name: Galaxy Worklfow Engine
     subtitle: Galaxy simulation workflow engine
-    tag: Apps
     url: http://galaxy.mcfe.itservices.manchester.ac.uk
   - icon: fa-solid fa-database
     name: InfluxDB
     subtitle: Time series database
-    tag: Apps
     url: http://influx.mcfe.itservices.manchester.ac.uk
   - icon: fa-solid fa-vial
     name: Node-RED
     subtitle: Experimental Control System
-    tag: Apps
     url: http://nodered.mcfe.itservices.manchester.ac.uk
   - icon: fa-solid fa-database
     name: Fuseki
     subtitle: SPARQL endpoint for RDF data
-    tag: Apps
     url: http://fuseki.mcfe.itservices.manchester.ac.uk
   - icon: fa-solid fa-chart-line
     name: Grafana
     subtitle: Data visualization and monitoring
-    tag: Apps
     url: http://grafana.mcfe.itservices.manchester.ac.uk
   - icon: fa-solid fa-database
     name: MinIO
     subtitle: Object storage service
-    tag: Apps
     url: http://minio.mcfe.itservices.manchester.ac.uk
   - icon: fa-solid fa-code-branch
     name: Gitea
     subtitle: Self-hosted Git service
-    tag: Apps
     url: http://gittea.mcfe.itservices.manchester.ac.uk
   name: Apps
 - icon: fa-solid fa-cog
@@ -103,22 +94,18 @@ services:
   - icon: fa-solid fa-user
     name: Whoami
     subtitle: Whoami service for testing
-    tag: Admin
     url: http://whoami.mcfe.itservices.manchester.ac.uk
   - icon: fa-solid fa-shield
     name: Authelia
     subtitle: Authentication
-    tag: Admin
     url: http://authelia.mcfe.itservices.manchester.ac.uk
   - icon: fa-solid fa-users
     name: LDAP
     subtitle: User Management
-    tag: Admin
     url: http://users.mcfe.itservices.manchester.ac.uk
   - icon: fa-solid fa-share-nodes
     name: Proxy
     subtitle: NginX Proxy Manager
-    tag: Admin
     url: http://proxy.mcfe.itservices.manchester.ac.uk
   name: Admin
 subtitle: MCFE
