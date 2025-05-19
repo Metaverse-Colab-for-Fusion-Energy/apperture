@@ -41,43 +41,63 @@
       "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
     },
     {
+      "name": "Proxy",
+      "icon": "fa-solid fa-share-nodes",
+      "group": "Admin",
+      "description": "NginX Proxy Manager",
+      "subdomain": "proxy",
+      "forward_host": "apperture-proxy",
+      "forward_port": 81,
+      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+    },
+    {
+      "name": "Galaxy",
+      "icon": "fa-solid fa-microscope",
+      "group": "Apps",
+      "description": "Galaxy workflow system",
+      "subdomain": "galaxy",
+      "forward_host": "10.99.44.89",
+      "forward_port": 8080,
+      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+    },
+    {
+      "name": "Galaxy",
+      "icon": "fa-solid fa-microscope",
+      "group": "Development Apps",
+      "description": "Galaxy workflow system",
+      "subdomain": "galaxy.dev",
+      "forward_host": "10.10.10.10",
+      "forward_port": 8080,
+      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+    },
+    {
+      "name": "Galaxy",
+      "icon": "fa-solid fa-microscope",
+      "group": "FIP Apps",
+      "description": "Galaxy workflow system",
+      "subdomain": "galaxy.fip",
+      "forward_host": "130.88.44.68",
+      "forward_port": 8080,
+      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+    },
+    {
       "name": "SampoUI",
       "icon": "fa-solid fa-cube",
       "subdomain": "sampo",
       "group": "Apps",
       "description": "Data Visualization",
-      "forward_host": "randall-sampo",
-      "forward_port": 3001,
+      "forward_host": "10.99.44.89",
+      "forward_port": 3006,
       "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
     },
     {
-      "name": "Galaxy Worklfow Engine",
-      "icon": "fa-solid fa-flask",
-      "subdomain": "galaxy",
+      "name": "SampoUI",
+      "icon": "fa-solid fa-cube",
+      "subdomain": "sampo",
       "group": "Apps",
-      "description": "Galaxy simulation workflow engine",
-      "forward_host": "randall-galaxy",
-      "forward_port": 8080,
-      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
-    },
-   {
-      "name": "InfluxDB",
-      "icon": "fa-solid fa-database",
-      "group": "Apps",
-      "description": "Time series database",
-      "subdomain": "influx",
-      "forward_host": "randall-influx",
-      "forward_port": 8086,
-      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
-    },
-   {
-      "name": "Node-RED",
-      "icon": "fa-solid fa-vial",
-      "group": "Apps",
-      "description": "Experimental Control System",
-      "subdomain": "nodered",
-      "forward_host": "randall-nodered",
-      "forward_port": 1880,
+      "description": "Data Visualization",
+      "forward_host": "10.10.10.10",
+      "forward_port": 3006,
       "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
     },
     {
@@ -86,48 +106,128 @@
       "group": "Apps",
       "description": "SPARQL endpoint for RDF data",
       "subdomain": "fuseki",
-      "forward_host": "randall-fuseki",
-      "forward_port": 3030,
+      "forward_host": "10.99.44.89",
+      "forward_port": 3031,
       "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
     },
-   {
-      "name": "Grafana",
-      "icon": "fa-solid fa-chart-line",
-      "group": "Apps",
-      "description": "Data visualization and monitoring",
-      "subdomain": "grafana",
-      "forward_host": "randall-grafana",
-      "forward_port": 3000,
-      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
-    },
-   {
-      "name": "MinIO",
+    {
+      "name": "Fuseki",
       "icon": "fa-solid fa-database",
       "group": "Apps",
-      "description": "Object storage service",
-      "subdomain": "minio",
-      "forward_host": "randall-minio",
-      "forward_port": 9001,
+      "description": "SPARQL endpoint for RDF data",
+      "subdomain": "fuseki",
+      "forward_host": "10.10.10.10",
+      "forward_port": 3031,
       "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
     },
-   {
-      "name": "Gitea",
-      "icon": "fa-solid fa-code-branch",
+    {
+      "name": "InfluxDB",
+      "icon": "fa-solid fa-chart-line",
       "group": "Apps",
-      "description": "Self-hosted Git service",
-      "subdomain": "gittea",
-      "forward_host": "randall-gittea",
+      "description": "InfluxDB time-series database",
+      "subdomain": "influx",
+      "forward_host": "10.99.44.89",
+      "forward_port": 8086,
+      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+    },
+    {
+      "name": "InfluxDB",
+      "icon": "fa-solid fa-chart-line",
+      "group": "Development Apps",
+      "description": "InfluxDB time-series database",
+      "subdomain": "influx.dev",
+      "forward_host": "10.10.10.10",
+      "forward_port": 8086,
+      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+    },
+    {
+      "name": "NodeRed",
+      "icon": "fa-solid fa-diagram-project",
+      "group": "Apps",
+      "description": "Node-RED flow programming",
+      "subdomain": "nodered",
+      "forward_host": "10.99.44.89",
+      "forward_port": 1880,
+      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+    },
+    {
+      "name": "NodeRed",
+      "icon": "fa-solid fa-diagram-project",
+      "group": "Development Apps",
+      "description": "Node-RED flow programming",
+      "subdomain": "nodered.dev",
+      "forward_host": "10.10.10.10",
+      "forward_port": 1880,
+      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+    },
+    {
+      "name": "Grafana",
+      "icon": "fa-solid fa-chart-bar",
+      "group": "Apps",
+      "description": "Grafana dashboards",
+      "subdomain": "grafana",
+      "forward_host": "10.99.44.89",
       "forward_port": 3000,
       "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
     },
     {
-      "name": "Proxy",
-      "icon": "fa-solid fa-share-nodes",
-      "group": "Admin",
-      "description": "NginX Proxy Manager",
-      "subdomain": "proxy",
-      "forward_host": "apperture-proxy",
-      "forward_port": 81,
+      "name": "Grafana",
+      "icon": "fa-solid fa-chart-bar",
+      "group": "Development Apps",
+      "description": "Grafana dashboards",
+      "subdomain": "grafana.dev",
+      "forward_host": "10.10.10.10",
+      "forward_port": 3000,
+      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+    },
+    {
+      "name": "MinIO",
+      "icon": "fa-solid fa-box-open",
+      "group": "Apps",
+      "description": "MinIO S3-compatible storage",
+      "subdomain": "minio",
+      "forward_host": "10.99.44.89",
+      "forward_port": 9001,
+      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+    },
+    {
+      "name": "MinIO",
+      "icon": "fa-solid fa-box-open",
+      "group": "Development Apps",
+      "description": "MinIO S3-compatible storage",
+      "subdomain": "minio.dev",
+      "forward_host": "10.10.10.10",
+      "forward_port": 9001,
+      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+    },
+    {
+      "name": "MinIO",
+      "icon": "fa-solid fa-box-open",
+      "group": "FIP Apps",
+      "description": "MinIO S3-compatible storage",
+      "subdomain": "minio.fip",
+      "forward_host": "1.1.1.1",
+      "forward_port": 9001,
+      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+    },
+    {
+      "name": "GitTea",
+      "icon": "fa-brands fa-git-alt",
+      "group": "Apps",
+      "description": "GitTea source control",
+      "subdomain": "gittea",
+      "forward_host": "10.99.44.89",
+      "forward_port": 3001,
+      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+    },
+    {
+      "name": "GitTea",
+      "icon": "fa-brands fa-git-alt",
+      "group": "Development Apps",
+      "description": "GitTea source control",
+      "subdomain": "gittea.dev",
+      "forward_host": "10.10.10.10",
+      "forward_port": 3001,
       "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
     }
   ]
