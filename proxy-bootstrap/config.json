@@ -77,7 +77,7 @@
       "description": "Galaxy workflow system",
       "subdomain": "galaxy.fip",
       "forward_host": "130.88.44.68",
-      "forward_port": 8080,
+      "forward_port": 80,
       "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
     },
     {
