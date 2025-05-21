@@ -37,10 +37,10 @@ echo "
   Pass: $(cat ${HOME}/.config/apperture/proxy/secrets/PROXY_PASSWORD)
 "
 
-# replace $URL in ${HOME}/.config/apperture/authelia/snippets/authelia-authrequest.conf with the URL stored in the .env file
+# replace $URL in ${PWD}/config/apperture/authelia/snippets/authelia-authrequest.conf with the URL stored in the .env file
 sed "s|\$URL|$(grep URL .env | cut -d '=' -f2)|g" \
-    ${HOME}/.config/apperture/authelia/snippets/authelia-authrequest.conf.template \
-    > ${HOME}/.config/apperture/authelia/snippets/authelia-authrequest.conf
+    ${PWD}/config/apperture/authelia/snippets/authelia-authrequest.conf.template \
+    > ${PWD}/config/apperture/authelia/snippets/authelia-authrequest.conf
 
 # if URL is localtest.me, generate certificates using mkcert
 DOMAIN=$(cat .env | grep URL | cut -d '=' -f2)
