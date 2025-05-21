@@ -38,7 +38,7 @@
       "description": "User Management",
       "forward_host": "apperture-ldap",
       "forward_port": 17170,
-      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+      "advanced_config": ""
     },
     {
       "name": "Proxy",

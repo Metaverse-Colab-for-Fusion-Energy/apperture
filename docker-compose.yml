@@ -1,20 +1,20 @@
 secrets:
   AUTHELIA_JWT_SECRET:
-    file: ${PWD}/config/authelia/secrets/AUTHELIA_JWT_SECRET
+    file: ~/.config/apperture/authelia/secrets/AUTHELIA_JWT_SECRET
   AUTHELIA_SESSION_SECRET:
-    file: ${PWD}/config/authelia/secrets/AUTHELIA_SESSION_SECRET
+    file: ~/.config/apperture/authelia/secrets/AUTHELIA_SESSION_SECRET
   AUTHELIA_STORAGE_PASSWORD:
-    file: ${PWD}/config/authelia/secrets/AUTHELIA_STORAGE_PASSWORD
+    file: ~/.config/apperture/authelia/secrets/AUTHELIA_STORAGE_PASSWORD
   AUTHELIA_STORAGE_ENCRYPTION_KEY:
-    file: ${PWD}/config/authelia/secrets/AUTHELIA_STORAGE_ENCRYPTION_KEY
+    file: ~/.config/apperture/authelia/secrets/AUTHELIA_STORAGE_ENCRYPTION_KEY
   LLDAP_JWT_SECRET:
-    file: ${PWD}/config/lldap/secrets/LLDAP_JWT_SECRET
+    file: ~/.config/apperture/lldap/secrets/LLDAP_JWT_SECRET
   LLDAP_PASSWORD:
-    file: ${PWD}/config/lldap/secrets/LLDAP_PASSWORD
+    file: ~/.config/apperture/lldap/secrets/LLDAP_PASSWORD
   LLDAP_STORAGE_PASSWORD:
-    file: ${PWD}/config/lldap/secrets/LLDAP_STORAGE_PASSWORD
+    file: ~/.config/apperture/lldap/secrets/LLDAP_STORAGE_PASSWORD
   PROXY_PASS:
-    file: ${PWD}/config/proxy/secrets/PROXY_PASSWORD
+    file: ~/.config/apperture/proxy/secrets/PROXY_PASSWORD
 
 services:
   proxy:
