@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-pass_files=("config/lldap/secrets/LLDAP_JWT_SECRET" \
-            "config/lldap/secrets/LLDAP_PASSWORD" \
-            "config/lldap/secrets/LLDAP_STORAGE_PASSWORD" \
-            "config/authelia/secrets/AUTHELIA_JWT_SECRET" \
-            "config/authelia/secrets/AUTHELIA_SESSION_SECRET" \
-            "config/authelia/secrets/AUTHELIA_STORAGE_ENCRYPTION_KEY" \
-            "config/authelia/secrets/AUTHELIA_STORAGE_PASSWORD" \
-            "config/casbin/secrets/CASBIN_STORAGE_PASSWORD" \
-            "config/proxy/secrets/PROXY_PASSWORD" \
+pass_files=("~/.config/apperture/lldap/secrets/LLDAP_JWT_SECRET" \
+            "~/.config/apperture/lldap/secrets/LLDAP_PASSWORD" \
+            "~/.config/apperture/lldap/secrets/LLDAP_STORAGE_PASSWORD" \
+            "~/.config/apperture/authelia/secrets/AUTHELIA_JWT_SECRET" \
+            "~/.config/apperture/authelia/secrets/AUTHELIA_SESSION_SECRET" \
+            "~/.config/apperture/authelia/secrets/AUTHELIA_STORAGE_ENCRYPTION_KEY" \
+            "~/.config/apperture/authelia/secrets/AUTHELIA_STORAGE_PASSWORD" \
+            "~/.config/apperture/casbin/secrets/CASBIN_STORAGE_PASSWORD" \
+            "~/.config/apperture/proxy/secrets/PROXY_PASSWORD" \
            )
 
 for file in ${pass_files[@]}
@@ -26,20 +26,20 @@ done
 echo "
  LLDAP admin credentials:
   User: admin
-  Pass: $(cat config/lldap/secrets/LLDAP_PASSWORD)
+  Pass: $(cat ~/.config/apperture/lldap/secrets/LLDAP_PASSWORD)
 "
 
 # Echo the proxy password to the console
 echo "
  Proxy credentials:
   User: $(cat .env | grep PROXY_USER | cut -d '=' -f2)
-  Pass: $(cat config/proxy/secrets/PROXY_PASSWORD)
+  Pass: $(cat ~/.config/apperture/proxy/secrets/PROXY_PASSWORD)
 "
 
-# replace $URL in config/authelia/snippets/authelia-authrequest.conf with the URL stored in the .env file
+# replace $URL in ~/.config/apperture/authelia/snippets/authelia-authrequest.conf with the URL stored in the .env file
 sed "s|\$URL|$(grep URL .env | cut -d '=' -f2)|g" \
-    config/authelia/snippets/authelia-authrequest.conf.template \
-    > config/authelia/snippets/authelia-authrequest.conf
+    ~/.config/apperture/authelia/snippets/authelia-authrequest.conf.template \
+    > ~/.config/apperture/authelia/snippets/authelia-authrequest.conf
 
 # if URL is localtest.me, generate certificates using mkcert
 DOMAIN=$(cat .env | grep URL | cut -d '=' -f2)
@@ -51,5 +51,5 @@ if [ "$DOMAIN" == "localtest.me" ]; then
     fi
     
     mkcert -install
-    mkcert "$DOMAIN" "*.$DOMAIN" "127.0.0.1" "::1"
+    mkcert "$DOMAIN" "*.$DOMAIN" "127.0.0.1" "::1" -cert-file ~/.config/apperture/certs/cert.pem -key-file ~/.config/apperture/certs/key.pem
 fi
