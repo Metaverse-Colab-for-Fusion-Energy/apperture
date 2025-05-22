@@ -115,7 +115,7 @@
       "icon": "fa-solid fa-database",
       "group": "Dev Apps",
       "description": "SPARQL endpoint for RDF data",
-      "subdomain": "fuseki",
+      "subdomain": "fuseki-dev",
       "forward_host": "10.10.10.10",
       "forward_port": 3031,
       "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
