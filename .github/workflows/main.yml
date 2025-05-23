@@ -25,6 +25,11 @@ jobs:
         run: |
           envsubst < env.template > .env
 
+      - name: Create Key and Cert Files
+        run: |
+          echo "${{ secrets.PRIVATE_KEY }}" > ${HOME}/.config/certs/private_key.pem
+          echo "${{ secrets.FULL_CHAIN_CERT }}" > ${HOME}/.config/certs/certificate.pem
+
       - name: Run generate_passwords
         run: |
           ./generate_passwords.sh

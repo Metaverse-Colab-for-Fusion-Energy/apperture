@@ -35,6 +35,8 @@ services:
       - 443:443
     volumes:
       - caddy-config:/config
+      - ${HOME}/.config/certs/private_key.pem:/ssl/certs/key.pem
+      - ${HOME}/.config/certs/certificate.pem:/ssl/certs/cert.pem
     networks:
       apperture:
     
