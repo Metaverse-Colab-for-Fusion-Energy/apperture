@@ -25,6 +25,12 @@ jobs:
         run: |
           envsubst < env.template > .env
 
+      - name: Create Key and Cert Files
+        run: |
+          mkdir -p ${HOME}/.config/certs
+          echo "${{ secrets.PRIVATE_KEY }}" > ${HOME}/.config/certs/private_key.pem
+          echo "${{ secrets.FULL_CHAIN_CERT }}" > ${HOME}/.config/certs/certificate.pem
+
       - name: Run generate_passwords
         run: |
           ./generate_passwords.sh
@@ -36,4 +42,4 @@ jobs:
       - name: Deploy with Docker Compose
         run: |
           docker compose pull
-          docker compose up -d
+          docker compose up -d --build

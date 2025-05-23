@@ -1,4 +1,6 @@
+
 {
+  "domain": "mcfe.itservices.manchester.ac.uk",
   "proxy_hosts": [
     {
       "name": "Home",
@@ -8,7 +10,8 @@
       "description": "Homepage for Randall's server",
       "forward_host": "apperture-homer",
       "forward_port": 8080,
-      "advanced_config": ""
+      "auth": false,
+      "ssl": true
     },
     {
       "name": "Whoami",
@@ -18,17 +21,8 @@
       "subdomain": "whoami",
       "forward_host": "apperture-whoami",
       "forward_port": 80,
-      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
-    },
-    {
-      "name": "Authelia",
-      "icon": "fa-solid fa-shield",
-      "group": "Admin",
-      "description": "Authentication",
-      "subdomain": "authelia",
-      "forward_host": "apperture-authelia",
-      "forward_port": 9091,
-      "advanced_config": "location / { include /snippets/proxy.conf; proxy_pass $forward_scheme://$server:$port; }"
+      "auth": true,
+      "ssl": true
     },
     {
       "name": "LDAP",
@@ -38,17 +32,8 @@
       "description": "User Management",
       "forward_host": "apperture-ldap",
       "forward_port": 17170,
-      "advanced_config": ""
-    },
-    {
-      "name": "Proxy",
-      "icon": "fa-solid fa-share-nodes",
-      "group": "Admin",
-      "description": "NginX Proxy Manager",
-      "subdomain": "proxy",
-      "forward_host": "apperture-proxy",
-      "forward_port": 81,
-      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+      "auth": true,
+      "ssl": true
     },
     {
       "name": "Galaxy",
@@ -58,7 +43,8 @@
       "subdomain": "galaxy",
       "forward_host": "10.99.44.89",
       "forward_port": 8080,
-      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+      "auth": true,
+      "ssl": true
     },
     {
       "name": "Galaxy",
@@ -68,7 +54,8 @@
       "subdomain": "galaxy-dev",
       "forward_host": "10.10.10.10",
       "forward_port": 8080,
-      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+      "auth": true,
+      "ssl": true
     },
     {
       "name": "Galaxy",
@@ -78,7 +65,8 @@
       "subdomain": "galaxy-fip",
       "forward_host": "130.88.44.68",
       "forward_port": 80,
-      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+      "auth": true,
+      "ssl": true
     },
     {
       "name": "SampoUI",
@@ -88,17 +76,19 @@
       "description": "Data Visualization",
       "forward_host": "10.99.44.89",
       "forward_port": 3006,
-      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+      "auth": true,
+      "ssl": true
     },
     {
       "name": "SampoUI",
       "icon": "fa-solid fa-cube",
-      "subdomain": "sampo",
+      "subdomain": "sampo-dev",
       "group": "Dev Apps",
       "description": "Data Visualization",
       "forward_host": "10.10.10.10",
       "forward_port": 3006,
-      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+      "auth": true,
+      "ssl": true
     },
     {
       "name": "Fuseki",
@@ -108,17 +98,19 @@
       "subdomain": "fuseki",
       "forward_host": "10.99.44.89",
       "forward_port": 3031,
-      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+      "auth": true,
+      "ssl": true
     },
     {
       "name": "Fuseki",
       "icon": "fa-solid fa-database",
       "group": "Dev Apps",
       "description": "SPARQL endpoint for RDF data",
-      "subdomain": "fuseki",
+      "subdomain": "fuseki-dev",
       "forward_host": "10.10.10.10",
       "forward_port": 3031,
-      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+      "auth": true,
+      "ssl": true
     },
     {
       "name": "InfluxDB",
@@ -128,7 +120,8 @@
       "subdomain": "influx",
       "forward_host": "10.99.44.89",
       "forward_port": 8086,
-      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+      "auth": true,
+      "ssl": true
     },
     {
       "name": "InfluxDB",
@@ -138,7 +131,8 @@
       "subdomain": "influx-dev",
       "forward_host": "10.10.10.10",
       "forward_port": 8086,
-      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+      "auth": true,
+      "ssl": true
     },
     {
       "name": "NodeRed",
@@ -148,7 +142,8 @@
       "subdomain": "nodered",
       "forward_host": "10.99.44.89",
       "forward_port": 1880,
-      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+      "auth": true,
+      "ssl": true
     },
     {
       "name": "NodeRed",
@@ -158,7 +153,8 @@
       "subdomain": "nodered-dev",
       "forward_host": "10.10.10.10",
       "forward_port": 1880,
-      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+      "auth": true,
+      "ssl": true
     },
     {
       "name": "Grafana",
@@ -168,7 +164,8 @@
       "subdomain": "grafana",
       "forward_host": "10.99.44.89",
       "forward_port": 3000,
-      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+      "auth": true,
+      "ssl": true
     },
     {
       "name": "Grafana",
@@ -178,7 +175,8 @@
       "subdomain": "grafana-dev",
       "forward_host": "10.10.10.10",
       "forward_port": 3000,
-      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+      "auth": true,
+      "ssl": true
     },
     {
       "name": "MinIO",
@@ -188,7 +186,8 @@
       "subdomain": "minio",
       "forward_host": "10.99.44.89",
       "forward_port": 9001,
-      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+      "auth": true,
+      "ssl": true
     },
     {
       "name": "MinIO",
@@ -198,7 +197,8 @@
       "subdomain": "minio-dev",
       "forward_host": "10.10.10.10",
       "forward_port": 9001,
-      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+      "auth": true,
+      "ssl": true
     },
     {
       "name": "MinIO",
@@ -208,7 +208,8 @@
       "subdomain": "minio-fip",
       "forward_host": "1.1.1.1",
       "forward_port": 9001,
-      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+      "auth": true,
+      "ssl": true
     },
     {
       "name": "GitTea",
@@ -218,7 +219,8 @@
       "subdomain": "gittea",
       "forward_host": "10.99.44.89",
       "forward_port": 3001,
-      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+      "auth": true,
+      "ssl": true
     },
     {
       "name": "GitTea",
@@ -228,7 +230,8 @@
       "subdomain": "gittea-dev",
       "forward_host": "10.10.10.10",
       "forward_port": 3001,
-      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
+      "auth": true,
+      "ssl": true
     }
   ]
 }
