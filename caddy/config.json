@@ -36,17 +36,6 @@
       "ssl": true
     },
     {
-      "name": "Proxy",
-      "icon": "fa-solid fa-share-nodes",
-      "group": "Admin",
-      "description": "NginX Proxy Manager",
-      "subdomain": "proxy",
-      "forward_host": "apperture-proxy",
-      "forward_port": 81,
-      "auth": true,
-      "ssl": true
-    },
-    {
       "name": "Galaxy",
       "icon": "fa-solid fa-microscope",
       "group": "Apps",
@@ -93,7 +82,7 @@
     {
       "name": "SampoUI",
       "icon": "fa-solid fa-cube",
-      "subdomain": "sampo",
+      "subdomain": "sampo-dev",
       "group": "Dev Apps",
       "description": "Data Visualization",
       "forward_host": "10.10.10.10",
