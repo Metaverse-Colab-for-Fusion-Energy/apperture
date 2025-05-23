@@ -1,0 +1,19 @@
+{
+  "domain": "localtest.me",
+  "proxy_hosts": [
+    {
+      "subdomain": "whoami",
+      "forward_host": "apperture-whoami",
+      "forward_port": 80,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "subdomain": "users",
+      "forward_host": "apperture-ldap",
+      "forward_port": 17170,
+      "auth": true,
+      "ssl": false
+    }
+  ]
+}
