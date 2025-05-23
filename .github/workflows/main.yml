@@ -27,6 +27,7 @@ jobs:
 
       - name: Create Key and Cert Files
         run: |
+          mkdir -p ${HOME}/.config/certs
           echo "${{ secrets.PRIVATE_KEY }}" > ${HOME}/.config/certs/private_key.pem
           echo "${{ secrets.FULL_CHAIN_CERT }}" > ${HOME}/.config/certs/certificate.pem
 
