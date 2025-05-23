@@ -1,67 +1,43 @@
 secrets:
   AUTHELIA_JWT_SECRET:
-    file: ~/.config/apperture/authelia/secrets/AUTHELIA_JWT_SECRET
+    file: ${HOME}/.config/apperture/authelia/secrets/AUTHELIA_JWT_SECRET
   AUTHELIA_SESSION_SECRET:
-    file: ~/.config/apperture/authelia/secrets/AUTHELIA_SESSION_SECRET
+    file: ${HOME}/.config/apperture/authelia/secrets/AUTHELIA_SESSION_SECRET
   AUTHELIA_STORAGE_PASSWORD:
-    file: ~/.config/apperture/authelia/secrets/AUTHELIA_STORAGE_PASSWORD
+    file: ${HOME}/.config/apperture/authelia/secrets/AUTHELIA_STORAGE_PASSWORD
   AUTHELIA_STORAGE_ENCRYPTION_KEY:
-    file: ~/.config/apperture/authelia/secrets/AUTHELIA_STORAGE_ENCRYPTION_KEY
+    file: ${HOME}/.config/apperture/authelia/secrets/AUTHELIA_STORAGE_ENCRYPTION_KEY
   LLDAP_JWT_SECRET:
-    file: ~/.config/apperture/lldap/secrets/LLDAP_JWT_SECRET
+    file: ${HOME}/.config/apperture/lldap/secrets/LLDAP_JWT_SECRET
   LLDAP_PASSWORD:
-    file: ~/.config/apperture/lldap/secrets/LLDAP_PASSWORD
+    file: ${HOME}/.config/apperture/lldap/secrets/LLDAP_PASSWORD
   LLDAP_STORAGE_PASSWORD:
-    file: ~/.config/apperture/lldap/secrets/LLDAP_STORAGE_PASSWORD
+    file: ${HOME}/.config/apperture/lldap/secrets/LLDAP_STORAGE_PASSWORD
   PROXY_PASS:
-    file: ~/.config/apperture/proxy/secrets/PROXY_PASSWORD
+    file: ${HOME}/.config/apperture/proxy/secrets/PROXY_PASSWORD
 
 services:
   proxy:
-    image: 'jc21/nginx-proxy-manager:latest'
+    build:
+      context: ./caddy
+      dockerfile_inline: |
+        FROM caddy:2.10
+        RUN apk add jinja2-cli
+        COPY Caddyfile.j2 /etc/caddy/Caddyfile.j2
+        COPY config.json /etc/caddy/config.json
+        RUN jinja2 /etc/caddy/Caddyfile.j2 /etc/caddy/config.json > /etc/caddy/Caddyfile
     container_name: apperture-proxy
     depends_on:
       - authelia
     restart: unless-stopped
     ports:
-      - '80:80' # Public HTTP Port
-      - '443:443' # Public HTTPS Port
-      - '81:81' # Admin Web Port2
-      # Uncomment this if IPv6 is not enabled on your host
-      # DISABLE_IPV6: 'true'
+      - 80:80
+      - 443:443
     volumes:
-      - nginx-proxy:/data
-      - nginx-certs:/etc/letsencrypt
-      - ${PWD}/config/authelia/snippets:/snippets:ro
+      - caddy-config:/config
     networks:
       apperture:
-    healthcheck:
-      test: ["CMD", "/bin/check-health"]
-      interval: 10s
-      timeout: 3s
-
-  proxy-bootstrap:
-    build:
-      dockerfile_inline: |
-        FROM alpine:3.12
-        RUN apk add --no-cache bash curl jq
-        ENTRYPOINT ["bash", "/app/bootstrap.sh"]
-    container_name: apperture-proxy-bootstrap
-    secrets: [PROXY_PASS]
-    environment:
-      DOMAIN: ${URL}
-      NGINX_IP: proxy
-      API_USER: ${PROXY_USER}
-    depends_on:
-      proxy:
-        condition: service_healthy
-    networks:
-      apperture:
-    volumes:
-      - ./proxy-bootstrap/bootstrap.sh:/app/bootstrap.sh
-      - ./proxy-bootstrap/config.json:/app/config.json
-      - ./proxy-bootstrap/nginx_proxy_manager_cli.sh:/app/nginx_proxy_manager_cli.sh
-
+    
   whoami:
     container_name: apperture-whoami
     image: docker.io/traefik/whoami
@@ -232,3 +208,4 @@ volumes:
   nginx-certs:
   lldap-data:
   lldap-postgres-data:
+  caddy-config:
