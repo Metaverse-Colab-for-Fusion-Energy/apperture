@@ -98,6 +98,9 @@ links:
     icon: "fab fa-github"
     url: "https://github.com/orgs/Metaverse-Colab-for-Fusion-Energy/repositories"
     target: "_blank" # optional html tag target attribute
+  - name: "MCFE Project Board"
+    icon: "fas fa-tasks"
+    url: "https://github.com/orgs/Metaverse-Colab-for-Fusion-Energy/projects/6/views/1"
   # - name: "link 2"
   #   icon: "fas fa-book"
   #   url: "https://github.com/bastienwirtz/homer"
