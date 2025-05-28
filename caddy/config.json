@@ -206,8 +206,8 @@
       "group": "FIP Apps",
       "description": "MinIO S3-compatible storage",
       "subdomain": "minio-fip",
-      "forward_host": "10.99.44.89",
-      "forward_port": 9001,
+      "forward_host": "10.99.44.110",
+      "forward_port": 4000,
       "auth": true,
       "ssl": true
     },
