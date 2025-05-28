@@ -207,7 +207,7 @@
       "description": "MinIO S3-compatible storage",
       "subdomain": "minio-fip",
       "forward_host": "10.99.44.110",
-      "forward_port": 4000,
+      "forward_port": 4040,
       "auth": true,
       "ssl": true
     },
