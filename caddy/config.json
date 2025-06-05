@@ -252,7 +252,7 @@
       "subdomain": "mcfelab-dev-2",
       "forward_host": "10.109.52.40",
       "forward_port": 5173,
-      "auth": true,
+      "auth": false,
       "ssl": false
     }
   ]
