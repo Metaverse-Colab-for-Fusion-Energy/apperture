@@ -8,6 +8,7 @@ DOMAIN = os.environ['DOMAIN']
 DEFAULT_LOGO = 'assets/default_logo.png'
 GROUPED_ICONS = {
     'Apps': 'fa-solid fa-rocket',
+    'MCFELab': 'fa-solid fa-computer',
     'Dev Apps': 'fa-solid fa-code',
     'Admin': 'fa-solid fa-cog',
     'FIP Apps': 'fa-solid fa-clipboard-check',
