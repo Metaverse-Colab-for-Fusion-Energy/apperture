@@ -22,8 +22,9 @@ authelia.{{ domain }} {
 }
 {% endfor %}
 
-:49100 {
-  reverse_proxy host:49100
+mcfelab-dev-2.{{ domain }} {
+    reverse_proxy /v2/* 10.109.52.40:49100
+    reverse_proxy 10.109.52.40:5173
 }
 
 # Redirect to homepage - do not edit
