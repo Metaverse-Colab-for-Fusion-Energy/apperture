@@ -244,16 +244,5 @@
       "auth": true,
       "ssl": true
     }
-    // {
-    //   "name": "MCFELab Dev 2",
-    //   "icon": "fa-solid fa-monitor-waveform",
-    //   "group": "Omniverse Web Apps",
-    //   "description": "Omniverse Web App",
-    //   "subdomain": "mcfelab-dev-2",
-    //   "forward_host": "10.109.52.40",
-    //   "forward_port": 5173,
-    //   "auth": false,
-    //   "ssl": false
-    // }
   ]
 }
