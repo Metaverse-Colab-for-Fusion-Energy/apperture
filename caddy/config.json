@@ -253,7 +253,7 @@
       "forward_host": "10.109.52.40",
       "forward_port": 5173,
       "auth": true,
-      "ssl": true
+      "ssl": false
     }
   ]
 }
