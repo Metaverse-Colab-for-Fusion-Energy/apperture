@@ -22,6 +22,10 @@ authelia.{{ domain }} {
 }
 {% endfor %}
 
+:49100 {
+  reverse_proxy host:49100
+}
+
 # Redirect to homepage - do not edit
 *.{{ domain }} {
     @notHome not host home.{{ domain }}
