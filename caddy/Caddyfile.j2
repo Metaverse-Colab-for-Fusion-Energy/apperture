@@ -22,6 +22,12 @@ authelia.{{ domain }} {
 }
 {% endfor %}
 
+mcfelab-dev-2.{{ domain }} {
+    tls /ssl/certs/cert.pem /ssl/certs/key.pem
+    reverse_proxy /v2/* 10.109.52.40:49100
+    reverse_proxy 10.109.52.40:5173
+}
+
 # Redirect to homepage - do not edit
 *.{{ domain }} {
     @notHome not host home.{{ domain }}
