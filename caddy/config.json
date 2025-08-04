@@ -52,7 +52,7 @@
       "group": "Dev Apps",
       "description": "Galaxy workflow system",
       "subdomain": "galaxy-dev",
-      "forward_host": "10.10.10.10",
+      "forward_host": "10.99.44.166",
       "forward_port": 8080,
       "auth": true,
       "ssl": true
@@ -85,7 +85,7 @@
       "subdomain": "sampo-dev",
       "group": "Dev Apps",
       "description": "Data Visualization",
-      "forward_host": "10.10.10.10",
+      "forward_host": "10.99.44.166",
       "forward_port": 3006,
       "auth": true,
       "ssl": true
@@ -107,7 +107,7 @@
       "group": "Dev Apps",
       "description": "SPARQL endpoint for RDF data",
       "subdomain": "fuseki-dev",
-      "forward_host": "10.10.10.10",
+      "forward_host": "10.99.44.166",
       "forward_port": 3031,
       "auth": true,
       "ssl": true
@@ -129,7 +129,7 @@
       "group": "Dev Apps",
       "description": "InfluxDB time-series database",
       "subdomain": "influx-dev",
-      "forward_host": "10.10.10.10",
+      "forward_host": "10.99.44.166",
       "forward_port": 8086,
       "auth": true,
       "ssl": true
@@ -151,7 +151,7 @@
       "group": "Dev Apps",
       "description": "Node-RED flow programming",
       "subdomain": "nodered-dev",
-      "forward_host": "10.10.10.10",
+      "forward_host": "10.99.44.166",
       "forward_port": 1880,
       "auth": true,
       "ssl": true
@@ -173,7 +173,7 @@
       "group": "Dev Apps",
       "description": "Grafana dashboards",
       "subdomain": "grafana-dev",
-      "forward_host": "10.10.10.10",
+      "forward_host": "10.99.44.166",
       "forward_port": 3000,
       "auth": true,
       "ssl": true
@@ -195,7 +195,7 @@
       "group": "Dev Apps",
       "description": "MinIO S3-compatible storage",
       "subdomain": "minio-dev",
-      "forward_host": "10.10.10.10",
+      "forward_host": "10.99.44.166",
       "forward_port": 9001,
       "auth": true,
       "ssl": true
@@ -228,7 +228,7 @@
       "group": "Dev Apps",
       "description": "GitTea source control",
       "subdomain": "gittea-dev",
-      "forward_host": "10.10.10.10",
+      "forward_host": "10.99.44.166",
       "forward_port": 3001,
       "auth": true,
       "ssl": true
