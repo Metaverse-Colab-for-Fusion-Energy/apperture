@@ -42,7 +42,7 @@
       "description": "Galaxy workflow system",
       "subdomain": "galaxy",
       "forward_host": "10.99.44.89",
-      "forward_port": 8080,
+      "forward_port": 80,
       "auth": true,
       "ssl": true
     },
@@ -53,7 +53,7 @@
       "description": "Galaxy workflow system",
       "subdomain": "galaxy-dev",
       "forward_host": "10.99.44.166",
-      "forward_port": 8080,
+      "forward_port": 80,
       "auth": true,
       "ssl": true
     },
