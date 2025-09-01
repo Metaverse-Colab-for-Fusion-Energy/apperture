@@ -11,6 +11,7 @@ GROUPED_ICONS = {
     'MCFELab': 'fa-solid fa-computer',
     'Dev Apps': 'fa-solid fa-code',
     'Experimental Control Testing': 'fa-solid fa-flask',
+    'Experiemntal Control Testing - Temp': 'fa-solid fa-flask',
     'Admin': 'fa-solid fa-cog',
     'FIP Apps': 'fa-solid fa-clipboard-check',
     'Misc': 'fa-solid fa-shapes',

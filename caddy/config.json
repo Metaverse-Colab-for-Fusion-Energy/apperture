@@ -42,7 +42,7 @@
       "description": "Galaxy workflow system",
       "subdomain": "galaxy",
       "forward_host": "10.99.44.89",
-      "forward_port": 8080,
+      "forward_port": 80,
       "auth": true,
       "ssl": true
     },
@@ -52,8 +52,8 @@
       "group": "Dev Apps",
       "description": "Galaxy workflow system",
       "subdomain": "galaxy-dev",
-      "forward_host": "10.10.10.10",
-      "forward_port": 8080,
+      "forward_host": "10.99.44.166",
+      "forward_port": 80,
       "auth": true,
       "ssl": true
     },
@@ -85,7 +85,7 @@
       "subdomain": "sampo-dev",
       "group": "Dev Apps",
       "description": "Data Visualization",
-      "forward_host": "10.10.10.10",
+      "forward_host": "10.99.44.166",
       "forward_port": 3006,
       "auth": true,
       "ssl": true
@@ -107,7 +107,7 @@
       "group": "Dev Apps",
       "description": "SPARQL endpoint for RDF data",
       "subdomain": "fuseki-dev",
-      "forward_host": "10.10.10.10",
+      "forward_host": "10.99.44.166",
       "forward_port": 3031,
       "auth": true,
       "ssl": true
@@ -129,7 +129,7 @@
       "group": "Dev Apps",
       "description": "InfluxDB time-series database",
       "subdomain": "influx-dev",
-      "forward_host": "10.10.10.10",
+      "forward_host": "10.99.44.166",
       "forward_port": 8086,
       "auth": true,
       "ssl": true
@@ -151,7 +151,7 @@
       "group": "Dev Apps",
       "description": "Node-RED flow programming",
       "subdomain": "nodered-dev",
-      "forward_host": "10.10.10.10",
+      "forward_host": "10.99.44.166",
       "forward_port": 1880,
       "auth": true,
       "ssl": true
@@ -173,7 +173,7 @@
       "group": "Dev Apps",
       "description": "Grafana dashboards",
       "subdomain": "grafana-dev",
-      "forward_host": "10.10.10.10",
+      "forward_host": "10.99.44.166",
       "forward_port": 3000,
       "auth": true,
       "ssl": true
@@ -195,7 +195,7 @@
       "group": "Dev Apps",
       "description": "MinIO S3-compatible storage",
       "subdomain": "minio-dev",
-      "forward_host": "10.10.10.10",
+      "forward_host": "10.99.44.166",
       "forward_port": 9001,
       "auth": true,
       "ssl": true
@@ -228,7 +228,7 @@
       "group": "Dev Apps",
       "description": "GitTea source control",
       "subdomain": "gittea-dev",
-      "forward_host": "10.10.10.10",
+      "forward_host": "10.99.44.166",
       "forward_port": 3001,
       "auth": true,
       "ssl": true
@@ -250,7 +250,7 @@
       "group": "Experimental Control Testing",
       "description": "Main UI",
       "subdomain": "comodo-ui-testing",
-      "forward_host": "10.109.52.40",
+      "forward_host": "130.88.44.68",
       "forward_port": 8501,
       "auth": true,
       "ssl": true
@@ -261,7 +261,7 @@
       "group": "Experimental Control Testing",
       "description": "Graphing Dashboard",
       "subdomain": "comodo-grafana-testing",
-      "forward_host": "10.109.52.40",
+      "forward_host": "130.88.44.68",
       "forward_port": 3000,
       "auth": true,
       "ssl": true
@@ -272,6 +272,39 @@
       "group": "Experimental Control Testing",
       "description": "Real-Time Database",
       "subdomain": "comodo-influx-testing",
+      "forward_host": "130.88.44.68",
+      "forward_port": 8086,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "Control Board",
+      "icon": "fa-solid fa-display",
+      "group": "Experimental Control Testing - Temp",
+      "description": "Main UI",
+      "subdomain": "comodo-ui-testing-temp",
+      "forward_host": "10.109.52.40",
+      "forward_port": 8501,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "Dashboard",
+      "icon": "fa-solid fa-chart-bar",
+      "group": "Experimental Control Testing - Temp",
+      "description": "Graphing Dashboard",
+      "subdomain": "comodo-grafana-testing-temp",
+      "forward_host": "10.109.52.40",
+      "forward_port": 3000,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "Influx",
+      "icon": "fa-solid fa-chart-line",
+      "group": "Experimental Control Testing - Temp",
+      "description": "Real-Time Database",
+      "subdomain": "comodo-influx-testing-temp",
       "forward_host": "10.109.52.40",
       "forward_port": 8086,
       "auth": true,
