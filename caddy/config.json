@@ -316,7 +316,7 @@
       "group": "Admin",
       "description": "Deployment Interface",
       "subdomain": "komodo",
-      "forward_host": "130.88.41.197",
+      "forward_host": "komodo-core-1",
       "forward_port": 9120,
       "auth": true,
       "ssl": true
