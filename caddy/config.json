@@ -244,6 +244,39 @@
       "auth": true,
       "ssl": true
     },
+        {
+      "name": "Control Board",
+      "icon": "fa-solid fa-display",
+      "group": "Experimental Control",
+      "description": "Main UI",
+      "subdomain": "comodo-ui",
+      "forward_host": "10.99.44.89",
+      "forward_port": 8501,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "Dashboard",
+      "icon": "fa-solid fa-chart-bar",
+      "group": "Experimental Control",
+      "description": "Graphing Dashboard",
+      "subdomain": "comodo-grafana",
+      "forward_host": "10.99.44.89",
+      "forward_port": 3000,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "Influx",
+      "icon": "fa-solid fa-chart-line",
+      "group": "Experimental Control",
+      "description": "Real-Time Database",
+      "subdomain": "comodo-influx",
+      "forward_host": "10.99.44.89",
+      "forward_port": 8086,
+      "auth": true,
+      "ssl": true
+    },
     {
       "name": "Control Board",
       "icon": "fa-solid fa-display",
