@@ -276,7 +276,7 @@
       "forward_port": 8086,
       "auth": true,
       "ssl": true
-    }
+    },
     {
       "name": "Komodo",
       "icon": "fa-solid fa-dragon",
