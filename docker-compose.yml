@@ -57,7 +57,7 @@ services:
         condition: service_healthy
     restart: unless-stopped
     volumes:
-      - ${PWD}/config/authelia/config:/config
+      - ${PWD}/config/authelia/config/configuration.yml:/config/configuration.yml
     secrets: [AUTHELIA_JWT_SECRET,
     AUTHELIA_SESSION_SECRET,
     AUTHELIA_STORAGE_PASSWORD,
@@ -198,6 +198,7 @@ services:
       - ./homer-bootstrap:/app
       - ./caddy:/proxy-bootstrap
       - ./config/homer:/configs
+
 networks:
   apperture:
     name: apperture_apperture
