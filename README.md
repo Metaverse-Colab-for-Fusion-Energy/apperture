@@ -105,7 +105,7 @@ will add `myapp.mylovelydomain.org` to the proxy your site, with https enabled a
 You are now ready to launch apperture. Do so with:
 
 ```shell
-docker compose up -d && docker compose logs -f
+docker compose up --build -d && docker compose logs -f
 ```
 
 and make sure no errors are thrown. you can exit the logs with `Ctrl+C`.
