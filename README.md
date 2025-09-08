@@ -32,13 +32,15 @@ cp env.template .env
 nano .env
 ```
 
-Edit the URL to your domain, and the username for your proxy server:
+Edit the URL to your domain, the name of your organisation and a tile for your site.
 
 ```diff
 - URL=foobar.org
+- ORGANISATION=Uni of Foo
+- TITLE=FooBar
 + URL=mylovelydomain.org
-- PROXY_USER=an_email_address@foo.bar
-+ PROXY_USER=your_email@domain.org
++ ORGANISATION=Uni of Foo
++ TITLE=My lovley site
 ```
 
 ### Generate admin credentials
@@ -61,49 +63,42 @@ Generating ...
 LLDAP admin credentials:
   User: admin
   Pass: kGb6eX8M4oVjd2WeKzGaK3NYTyz29eLmqUvX78JqfTnev9cEQNG9yWsV2w4QfWs88yLxnvj9
-  
-# Account for administraing the proxy:
- Proxy credentials:
-  User: your_email@domain.org
-  Pass: HdGYNdaJ1GhxWMOm8Nr2rAaITh3sQSfSpz5SXFbFqpW9DjqbtumQOcJfywfVc57x
 ```
 
 **Securly save these credientials for later** 
 We suggest using a password manger. 
 
-### Configure the proxy hosts
+### Configure your subdomains
 
-The proxy hosts in the `proxy-bootstrap/config.json` file are added to the nginx-proxy configuration when apperture is launched.
+The subdomains configured in the `config.json` file are added to your site when apperture is launched.
 
 You can add your own hosts to the config.json file.
 Make sure to use the same format as the existing hosts, that is:
- - forward_host: the name of the docker container running the service
- - forward_port: the port the service is running on
- - advanced_config: copy and paste this line to make that service protected by authelia.
- - either:
-   - subdomain: the subdomain you want to use for the service. This will be prepended to the domain you set in the `.env` file. You may instead indicate the fqdn.
-   - fqdn: the fully qualified domain name (full url) of the service. If set, the subdomain will be ignored.
+* *name*: title of subdomain, headline on home page
+* *subdomain*: address users will visit `subdomain.mylovleydomain.org`
+* *icon*: font-awesome icon to represent subdomain on home page
+* *group*: home page group to add endpoint to (default: "Apps")
+* *description*: long form text to describe subdomain on home page
+* *forward_host*: container name or IP address of target service
+* *port*: port to access on target service
+* *auth*: boolean to enable / disable requring authelia logon for access
+* *ssl*: whether or not to apply https routing to the subdomain
 
 For example, if in the `.env` file you used `URL=mylovelydomain.org`, adding this:
 ```json
     {
-      "subdomain": "my_app",
-      "forward_host": "my_app_flask",
-      "forward_port": 8000,
-      "advanced_config": "include /snippets/authelia-location.conf; location / { include /snippets/proxy.conf; include /snippets/authelia-authrequest.conf; proxy_pass $forward_scheme://$server:$port; }"
-    }
+      "name": "My App",
+      "icon": "fa-solid fa-cog",
+      "group": "Apps",
+      "description": "The my app service for testing",
+      "subdomain": "myapp",
+      "forward_host": "apperture-myapp",
+      "forward_port": 80,
+      "auth": true,
+      "ssl": true
+    },
 ```
-will add `my_app.mylovelydomain.org` to the proxy hosts, and will protect it with authelia.
-
-As another example, you could add:
-```json
-    {
-      "fqdn": "my_lovely_app_proxy.anotherdomain.org",
-      "forward_host": "apperture-proxy",
-      "forward_port": 81,
-    }
-```
-will add `my_lovely_app_proxy.anotherdomain.org` to the proxy hosts, and will not protect it with authelia.
+will add `myapp.mylovelydomain.org` to the proxy your site, with https enabled and protected by authelia. The homepage will have a tile added with a cog symbol called "My App" which connects to the container `apperture-myapp` on port 80.
 
 ### Launch apperture
 
