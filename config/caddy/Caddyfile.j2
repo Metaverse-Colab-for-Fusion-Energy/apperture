@@ -1,0 +1,29 @@
+# Global config - do not edit
+trusted_proxies 172.16.0.0/12
+{
+}
+
+# Authentication endpoint - do not edit
+authelia.{{ domain }} {
+    reverse_proxy authelia:9091
+}
+{% for site in proxy_hosts %}
+{{ "https" if site.ssl else "http" }}://{{ site.subdomain }}.{{ domain }} {
+    {% if site.auth %}
+    forward_auth authelia:9091 {
+        uri /api/authz/forward-auth?authelia_url=https://authelia.{{ domain }}/
+        copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
+    }
+    {% endif %}
+    {% if site.ssl %}
+    tls /ssl/certs/cert.pem /ssl/certs/key.pem
+    {% endif %}
+    reverse_proxy {{ site.forward_host }}:{{ site.forward_port }}
+}
+{% endfor %}
+
+# Redirect to homepage - do not edit
+*.{{ domain }} {
+    @notHome not host home.{{ domain }}
+    redir @notHome https://home.{{ domain }}{uri} permanent
+}

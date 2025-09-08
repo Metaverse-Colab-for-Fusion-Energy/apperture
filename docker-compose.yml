@@ -18,50 +18,28 @@ secrets:
 
 services:
   proxy:
-    image: 'jc21/nginx-proxy-manager:latest'
+    build:
+      context: ./
+      dockerfile_inline: |
+        FROM caddy:2.10
+        RUN apk add jinja2-cli
+        COPY config/caddy/Caddyfile.j2 /etc/caddy/Caddyfile.j2
+        COPY config.json /etc/caddy/config.json
+        RUN jinja2 /etc/caddy/Caddyfile.j2 /etc/caddy/config.json > /etc/caddy/Caddyfile
     container_name: apperture-proxy
     depends_on:
       - authelia
     restart: unless-stopped
     ports:
-      - '80:80' # Public HTTP Port
-      - '443:443' # Public HTTPS Port
-      - '81:81' # Admin Web Port2
-      # Uncomment this if IPv6 is not enabled on your host
-      # DISABLE_IPV6: 'true'
+      - 80:80
+      - 443:443
     volumes:
-      - nginx-proxy:/data
-      - nginx-certs:/etc/letsencrypt
-      - ${PWD}/config/authelia/snippets:/snippets:ro
+      - ./key.pem:/ssl/certs/key.pem
+      - ./cert.pem:/ssl/certs/cert.pem
+      - caddy-config:/config
     networks:
       apperture:
-    healthcheck:
-      test: ["CMD", "/bin/check-health"]
-      interval: 10s
-      timeout: 3s
-
-  proxy-bootstrap:
-    build:
-      dockerfile_inline: |
-        FROM alpine:3.12
-        RUN apk add --no-cache bash curl jq
-        ENTRYPOINT ["bash", "/app/bootstrap.sh"]
-    container_name: apperture-proxy-bootstrap
-    secrets: [PROXY_PASS]
-    environment:
-      DOMAIN: ${URL}
-      NGINX_IP: proxy
-      API_USER: ${PROXY_USER}
-    depends_on:
-      proxy:
-        condition: service_healthy
-    networks:
-      apperture:
-    volumes:
-      - ./proxy-bootstrap/bootstrap.sh:/app/bootstrap.sh
-      - ./proxy-bootstrap/config.json:/app/config.json
-      - ./proxy-bootstrap/nginx_proxy_manager_cli.sh:/app/nginx_proxy_manager_cli.sh
-
+    
   whoami:
     container_name: apperture-whoami
     image: docker.io/traefik/whoami
@@ -81,7 +59,7 @@ services:
         condition: service_healthy
     restart: unless-stopped
     volumes:
-      - ${PWD}/config/authelia/config:/config
+      - ${PWD}/config/authelia/config/configuration.yml:/config/configuration.yml
     secrets: [AUTHELIA_JWT_SECRET,
     AUTHELIA_SESSION_SECRET,
     AUTHELIA_STORAGE_PASSWORD,
@@ -185,6 +163,44 @@ services:
       timeout: 5s
       retries: 5 
 
+  homer:
+    image: b4bz/homer
+    container_name: apperture-homer
+    depends_on:
+      homer-bootstrap:
+        condition: service_completed_successfully
+    volumes:
+      - ./config/homer:/www/assets # Make sure your local config directory exists
+    ports:
+      - 8080:8080
+    user: 1000:1000 # default
+    environment:
+      - INIT_ASSETS=1 # default, requires the config directory to be writable for the container user (see user option)
+    restart: unless-stopped
+    networks:
+      apperture:
+
+  homer-bootstrap:
+    build:
+      dockerfile_inline: |
+        FROM python:3.12-alpine
+        RUN pip install pyyaml
+        RUN mkdir -p /proxy-bootstrap
+        RUN mkdir -p /configs
+        RUN mkdir -p /app/homer
+        ENTRYPOINT ["python3", "/app/configure_homepage.py"]
+    container_name: apperture-homer-bootstrap
+    environment:
+      ORGANISATION: ${ORGANISATION}
+      TITLE: ${TITLE}
+      DOMAIN: ${URL}
+    networks:
+      apperture:
+    volumes:
+      - ./homer-bootstrap:/app
+      - ./config.json:/proxy-bootstrap/config.json
+      - ./config/homer:/configs
+
 networks:
   apperture:
     name: apperture_apperture
@@ -194,3 +210,4 @@ volumes:
   nginx-certs:
   lldap-data:
   lldap-postgres-data:
+  caddy-config:

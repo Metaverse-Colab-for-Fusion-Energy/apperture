@@ -1,0 +1,38 @@
+{
+  "domain": "localtest.me",
+  "proxy_hosts": [
+    {
+      "name": "Home",
+      "subdomain": "home",
+      "icon": "fa-solid fa-house",
+      "group": "Apps",
+      "description": "Homepage for the apperture server",
+      "forward_host": "apperture-homer",
+      "forward_port": 8080,
+      "auth": false,
+      "ssl": true
+    },
+    {
+      "name": "Whoami",
+      "icon": "fa-solid fa-user",
+      "group": "Apps",
+      "description": "Whoami service for testing",
+      "subdomain": "whoami",
+      "forward_host": "apperture-whoami",
+      "forward_port": 80,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "LDAP",
+      "icon": "fa-solid fa-users",
+      "subdomain": "users",
+      "group": "Apps",
+      "description": "User Management",
+      "forward_host": "apperture-ldap",
+      "forward_port": 17170,
+      "auth": true,
+      "ssl": false
+    }
+  ]
+}

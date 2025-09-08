@@ -6,15 +6,14 @@ pass_files=("config/lldap/secrets/LLDAP_JWT_SECRET" \
             "config/authelia/secrets/AUTHELIA_JWT_SECRET" \
             "config/authelia/secrets/AUTHELIA_SESSION_SECRET" \
             "config/authelia/secrets/AUTHELIA_STORAGE_ENCRYPTION_KEY" \
-            "config/authelia/secrets/AUTHELIA_STORAGE_PASSWORD" \
-            "config/casbin/secrets/CASBIN_STORAGE_PASSWORD" \
-            "config/proxy/secrets/PROXY_PASSWORD" \
+            "config/authelia/secrets/AUTHELIA_STORAGE_PASSWORD" 
            )
 
 for file in ${pass_files[@]}
 do
     # only generate passwords if the files do not exist
     if [ ! -f $file ]; then
+        mkdir -p $(dirname $file)
         echo Generating $file
         docker run authelia/authelia:latest authelia crypto rand --length 64 --charset alphanumeric | awk '{print $3}' > $file
     else
@@ -27,13 +26,6 @@ echo "
  LLDAP admin credentials:
   User: admin
   Pass: $(cat config/lldap/secrets/LLDAP_PASSWORD)
-"
-
-# Echo the proxy password to the console
-echo "
- Proxy credentials:
-  User: $(cat .env | grep PROXY_USER | cut -d '=' -f2)
-  Pass: $(cat config/proxy/secrets/PROXY_PASSWORD)
 "
 
 # replace $URL in config/authelia/snippets/authelia-authrequest.conf with the URL stored in the .env file
@@ -51,5 +43,5 @@ if [ "$DOMAIN" == "localtest.me" ]; then
     fi
     
     mkcert -install
-    mkcert "$DOMAIN" "*.$DOMAIN" "127.0.0.1" "::1"
+    mkcert -cert-file cert.pem -key-file key.pem "$DOMAIN" "*.$DOMAIN" "127.0.0.1" "::1" 
 fi
