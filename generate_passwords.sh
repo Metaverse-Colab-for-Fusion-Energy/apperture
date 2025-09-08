@@ -13,6 +13,7 @@ for file in ${pass_files[@]}
 do
     # only generate passwords if the files do not exist
     if [ ! -f $file ]; then
+        mkdir -p $(dirname $file)
         echo Generating $file
         docker run authelia/authelia:latest authelia crypto rand --length 64 --charset alphanumeric | awk '{print $3}' > $file
     else
