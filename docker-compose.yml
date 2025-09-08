@@ -34,8 +34,8 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ./localtest.me+3-key.pem:/ssl/certs/key.pem
-      - ./localtest.me+3.pem:/ssl/certs/cert.pem
+      - ./key.pem:/ssl/certs/key.pem
+      - ./cert.pem:/ssl/certs/cert.pem
       - caddy-config:/config
     networks:
       apperture:

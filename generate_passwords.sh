@@ -43,5 +43,5 @@ if [ "$DOMAIN" == "localtest.me" ]; then
     fi
     
     mkcert -install
-    mkcert "$DOMAIN" "*.$DOMAIN" "127.0.0.1" "::1"
+    mkcert -cert-file cert.pem -key-file key.pem "$DOMAIN" "*.$DOMAIN" "127.0.0.1" "::1" 
 fi
