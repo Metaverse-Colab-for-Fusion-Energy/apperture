@@ -207,5 +207,4 @@ volumes:
   nginx-certs:
   lldap-data:
   lldap-postgres-data:
-  caddy-data:
   caddy-config:
