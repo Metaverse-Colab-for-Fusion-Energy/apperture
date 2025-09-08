@@ -15,7 +15,7 @@
     {
       "name": "Whoami",
       "icon": "fa-solid fa-user",
-      "group": "Admin",
+      "group": "Apps",
       "description": "Whoami service for testing",
       "subdomain": "whoami",
       "forward_host": "apperture-whoami",
@@ -27,7 +27,7 @@
       "name": "LDAP",
       "icon": "fa-solid fa-users",
       "subdomain": "users",
-      "group": "Admin",
+      "group": "Apps",
       "description": "User Management",
       "forward_host": "apperture-ldap",
       "forward_port": 17170,
