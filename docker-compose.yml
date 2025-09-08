@@ -27,6 +27,8 @@ services:
         COPY config.json /etc/caddy/config.json
         RUN jinja2 /etc/caddy/Caddyfile.j2 /etc/caddy/config.json > /etc/caddy/Caddyfile
     container_name: apperture-proxy
+    depends_on:
+      - authelia
     restart: unless-stopped
     ports:
       - 80:80
