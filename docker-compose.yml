@@ -161,6 +161,43 @@ services:
       timeout: 5s
       retries: 5 
 
+  homer:
+    image: b4bz/homer
+    container_name: apperture-homer
+    depends_on:
+      homer-bootstrap:
+        condition: service_completed_successfully
+    volumes:
+      - ./config/homer:/www/assets # Make sure your local config directory exists
+    ports:
+      - 8080:8080
+    user: 1000:1000 # default
+    environment:
+      - INIT_ASSETS=1 # default, requires the config directory to be writable for the container user (see user option)
+    restart: unless-stopped
+    networks:
+      apperture:
+
+  homer-bootstrap:
+    build:
+      dockerfile_inline: |
+        FROM python:3.12-alpine
+        RUN pip install pyyaml
+        RUN mkdir -p /proxy-bootstrap
+        RUN mkdir -p /configs
+        RUN mkdir -p /app/homer
+        ENTRYPOINT ["python3", "/app/configure_homepage.py"]
+    container_name: apperture-homer-bootstrap
+    environment:
+      ORGANISATION: ${ORGANISATION}
+      TITLE: ${TITLE}
+      DOMAIN: ${URL}
+    networks:
+      apperture:
+    volumes:
+      - ./homer-bootstrap:/app
+      - ./caddy:/proxy-bootstrap
+      - ./config/homer:/configs
 networks:
   apperture:
     name: apperture_apperture

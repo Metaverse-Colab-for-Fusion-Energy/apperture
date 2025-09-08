@@ -21,3 +21,9 @@ authelia.{{ domain }} {
     reverse_proxy {{ site.forward_host }}:{{ site.forward_port }}
 }
 {% endfor %}
+
+# Redirect to homepage - do not edit
+*.{{ domain }} {
+    @notHome not host home.{{ domain }}
+    redir @notHome https://home.{{ domain }}{uri} permanent
+}
