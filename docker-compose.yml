@@ -19,11 +19,11 @@ secrets:
 services:
   proxy:
     build:
-      context: ./caddy
+      context: ./
       dockerfile_inline: |
         FROM caddy:2.10
         RUN apk add jinja2-cli
-        COPY Caddyfile.j2 /etc/caddy/Caddyfile.j2
+        COPY config/caddy/Caddyfile.j2 /etc/caddy/Caddyfile.j2
         COPY config.json /etc/caddy/config.json
         RUN jinja2 /etc/caddy/Caddyfile.j2 /etc/caddy/config.json > /etc/caddy/Caddyfile
     container_name: apperture-proxy
