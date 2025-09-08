@@ -198,7 +198,7 @@ services:
       apperture:
     volumes:
       - ./homer-bootstrap:/app
-      - ./caddy:/proxy-bootstrap
+      - ./config.json:/proxy-bootstrap/config.json
       - ./config/homer:/configs
 
 networks:
