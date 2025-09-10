@@ -33,7 +33,7 @@ authentication_backend:
   refresh_interval: 5m
 
   ldap:
-    address: 'ldap://apperture-ldap:3890'
+    address: 'ldap://apperture-lldap:3890'
     base_dn: 'dc=example,dc=com'
     additional_users_dn: 'ou=people'
     additional_groups_dn: 'ou=groups'
