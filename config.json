@@ -31,7 +31,7 @@
       "forward_host": "apperture-ldap",
       "forward_port": 17170,
       "auth": true,
-      "ssl": false
+      "ssl": true
     }
   ]
 }
