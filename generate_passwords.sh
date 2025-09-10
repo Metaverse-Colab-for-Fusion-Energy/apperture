@@ -25,7 +25,7 @@ done
 echo "
  LLDAP admin credentials:
   User: admin
-  Pass: $(cat config/lldap/secrets/LLDAP_PASSWORD)
+  Pass: $(cat ${HOME}/.config/apperture/lldap/secrets/LLDAP_PASSWORD)
 "
 
 # replace $URL in config/authelia/snippets/authelia-authrequest.conf with the URL stored in the .env file
@@ -43,5 +43,5 @@ if [ "$DOMAIN" == "localtest.me" ]; then
     fi
     
     mkcert -install
-    mkcert -cert-file cert.pem -key-file key.pem "$DOMAIN" "*.$DOMAIN" "127.0.0.1" "::1" 
+    mkcert "$DOMAIN" "*.$DOMAIN" "127.0.0.1" "::1" -cert-file ${HOME}/.config/apperture/certs/cert.pem -key-file ${HOME}/.config/apperture/certs/key.pem
 fi

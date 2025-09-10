@@ -1,0 +1,325 @@
+
+{
+  "domain": "mcfe.itservices.manchester.ac.uk",
+  "proxy_hosts": [
+    {
+      "name": "Home",
+      "subdomain": "home",
+      "icon": "fa-solid fa-house",
+      "group": "Apps",
+      "description": "Homepage for Randall's server",
+      "forward_host": "apperture-homer",
+      "forward_port": 8080,
+      "auth": false,
+      "ssl": true
+    },
+    {
+      "name": "Whoami",
+      "icon": "fa-solid fa-user",
+      "group": "Admin",
+      "description": "Whoami service for testing",
+      "subdomain": "whoami",
+      "forward_host": "apperture-whoami",
+      "forward_port": 80,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "LDAP",
+      "icon": "fa-solid fa-users",
+      "subdomain": "users",
+      "group": "Admin",
+      "description": "User Management",
+      "forward_host": "apperture-ldap",
+      "forward_port": 17170,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "Galaxy",
+      "icon": "fa-solid fa-microscope",
+      "group": "Apps",
+      "description": "Galaxy workflow system",
+      "subdomain": "galaxy",
+      "forward_host": "10.99.44.89",
+      "forward_port": 80,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "Galaxy",
+      "icon": "fa-solid fa-microscope",
+      "group": "Dev Apps",
+      "description": "Galaxy workflow system",
+      "subdomain": "galaxy-dev",
+      "forward_host": "10.99.44.166",
+      "forward_port": 80,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "Galaxy",
+      "icon": "fa-solid fa-microscope",
+      "group": "FIP Apps",
+      "description": "Galaxy workflow system",
+      "subdomain": "galaxy-fip",
+      "forward_host": "130.88.44.68",
+      "forward_port": 80,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "SampoUI",
+      "icon": "fa-solid fa-cube",
+      "subdomain": "sampo",
+      "group": "Apps",
+      "description": "Data Visualization",
+      "forward_host": "10.99.44.89",
+      "forward_port": 3006,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "SampoUI",
+      "icon": "fa-solid fa-cube",
+      "subdomain": "sampo-dev",
+      "group": "Dev Apps",
+      "description": "Data Visualization",
+      "forward_host": "10.99.44.166",
+      "forward_port": 3006,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "Fuseki",
+      "icon": "fa-solid fa-database",
+      "group": "Apps",
+      "description": "SPARQL endpoint for RDF data",
+      "subdomain": "fuseki",
+      "forward_host": "10.99.44.89",
+      "forward_port": 3031,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "Fuseki",
+      "icon": "fa-solid fa-database",
+      "group": "Dev Apps",
+      "description": "SPARQL endpoint for RDF data",
+      "subdomain": "fuseki-dev",
+      "forward_host": "10.99.44.166",
+      "forward_port": 3031,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "InfluxDB",
+      "icon": "fa-solid fa-chart-line",
+      "group": "Apps",
+      "description": "InfluxDB time-series database",
+      "subdomain": "influx",
+      "forward_host": "10.99.44.89",
+      "forward_port": 8086,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "InfluxDB",
+      "icon": "fa-solid fa-chart-line",
+      "group": "Dev Apps",
+      "description": "InfluxDB time-series database",
+      "subdomain": "influx-dev",
+      "forward_host": "10.99.44.166",
+      "forward_port": 8086,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "NodeRed",
+      "icon": "fa-solid fa-diagram-project",
+      "group": "Apps",
+      "description": "Node-RED flow programming",
+      "subdomain": "nodered",
+      "forward_host": "10.99.44.89",
+      "forward_port": 1880,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "NodeRed",
+      "icon": "fa-solid fa-diagram-project",
+      "group": "Dev Apps",
+      "description": "Node-RED flow programming",
+      "subdomain": "nodered-dev",
+      "forward_host": "10.99.44.166",
+      "forward_port": 1880,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "Grafana",
+      "icon": "fa-solid fa-chart-bar",
+      "group": "Apps",
+      "description": "Grafana dashboards",
+      "subdomain": "grafana",
+      "forward_host": "10.99.44.89",
+      "forward_port": 3000,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "Grafana",
+      "icon": "fa-solid fa-chart-bar",
+      "group": "Dev Apps",
+      "description": "Grafana dashboards",
+      "subdomain": "grafana-dev",
+      "forward_host": "10.99.44.166",
+      "forward_port": 3000,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "MinIO",
+      "icon": "fa-solid fa-box-open",
+      "group": "Apps",
+      "description": "MinIO S3-compatible storage",
+      "subdomain": "minio",
+      "forward_host": "10.99.44.89",
+      "forward_port": 9001,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "MinIO",
+      "icon": "fa-solid fa-box-open",
+      "group": "Dev Apps",
+      "description": "MinIO S3-compatible storage",
+      "subdomain": "minio-dev",
+      "forward_host": "10.99.44.166",
+      "forward_port": 9001,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "MinIO",
+      "icon": "fa-solid fa-box-open",
+      "group": "FIP Apps",
+      "description": "MinIO S3-compatible storage",
+      "subdomain": "minio-fip",
+      "forward_host": "10.99.44.110",
+      "forward_port": 4040,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "GitTea",
+      "icon": "fa-brands fa-git-alt",
+      "group": "Apps",
+      "description": "GitTea source control",
+      "subdomain": "gittea",
+      "forward_host": "10.99.44.89",
+      "forward_port": 3001,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "GitTea",
+      "icon": "fa-brands fa-git-alt",
+      "group": "Dev Apps",
+      "description": "GitTea source control",
+      "subdomain": "gittea-dev",
+      "forward_host": "10.99.44.166",
+      "forward_port": 3001,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "MCFELab Dev 1",
+      "icon": "fa-solid fa-monitor-waveform",
+      "group": "Omniverse Web Apps",
+      "description": "Omniverse Web App",
+      "subdomain": "mcfelab-dev-1",
+      "forward_host": "10.109.52.33",
+      "forward_port": 5173,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "Control Board",
+      "icon": "fa-solid fa-display",
+      "group": "Experimental Control Testing",
+      "description": "Main UI",
+      "subdomain": "comodo-ui-testing",
+      "forward_host": "130.88.44.68",
+      "forward_port": 8501,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "Dashboard",
+      "icon": "fa-solid fa-chart-bar",
+      "group": "Experimental Control Testing",
+      "description": "Graphing Dashboard",
+      "subdomain": "comodo-grafana-testing",
+      "forward_host": "130.88.44.68",
+      "forward_port": 3000,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "Influx",
+      "icon": "fa-solid fa-chart-line",
+      "group": "Experimental Control Testing",
+      "description": "Real-Time Database",
+      "subdomain": "comodo-influx-testing",
+      "forward_host": "130.88.44.68",
+      "forward_port": 8086,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "Control Board",
+      "icon": "fa-solid fa-display",
+      "group": "Experimental Control Testing - Temp",
+      "description": "Main UI",
+      "subdomain": "comodo-ui-testing-temp",
+      "forward_host": "10.109.52.40",
+      "forward_port": 8501,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "Dashboard",
+      "icon": "fa-solid fa-chart-bar",
+      "group": "Experimental Control Testing - Temp",
+      "description": "Graphing Dashboard",
+      "subdomain": "comodo-grafana-testing-temp",
+      "forward_host": "10.109.52.40",
+      "forward_port": 3000,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "Influx",
+      "icon": "fa-solid fa-chart-line",
+      "group": "Experimental Control Testing - Temp",
+      "description": "Real-Time Database",
+      "subdomain": "comodo-influx-testing-temp",
+      "forward_host": "10.109.52.40",
+      "forward_port": 8086,
+      "auth": true,
+      "ssl": true
+    },
+    {
+      "name": "Komodo",
+      "icon": "fa-solid fa-dragon",
+      "group": "Admin",
+      "description": "Deployment Interface",
+      "subdomain": "komodo",
+      "forward_host": "komodo-core-1",
+      "forward_port": 9120,
+      "auth": true,
+      "ssl": true
+    }
+  ]
+}

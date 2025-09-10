@@ -1,18 +1,18 @@
 secrets:
   AUTHELIA_JWT_SECRET:
-    file: ${PWD}/config/authelia/secrets/AUTHELIA_JWT_SECRET
+    file: ${HOME}/.config/apperture/authelia/secrets/AUTHELIA_JWT_SECRET
   AUTHELIA_SESSION_SECRET:
-    file: ${PWD}/config/authelia/secrets/AUTHELIA_SESSION_SECRET
+    file: ${HOME}/.config/apperture/authelia/secrets/AUTHELIA_SESSION_SECRET
   AUTHELIA_STORAGE_PASSWORD:
-    file: ${PWD}/config/authelia/secrets/AUTHELIA_STORAGE_PASSWORD
+    file: ${HOME}/.config/apperture/authelia/secrets/AUTHELIA_STORAGE_PASSWORD
   AUTHELIA_STORAGE_ENCRYPTION_KEY:
-    file: ${PWD}/config/authelia/secrets/AUTHELIA_STORAGE_ENCRYPTION_KEY
+    file: ${HOME}/.config/apperture/authelia/secrets/AUTHELIA_STORAGE_ENCRYPTION_KEY
   LLDAP_JWT_SECRET:
-    file: ${PWD}/config/lldap/secrets/LLDAP_JWT_SECRET
+    file: ${HOME}/.config/apperture/lldap/secrets/LLDAP_JWT_SECRET
   LLDAP_PASSWORD:
-    file: ${PWD}/config/lldap/secrets/LLDAP_PASSWORD
+    file: ${HOME}/.config/apperture/lldap/secrets/LLDAP_PASSWORD
   LLDAP_STORAGE_PASSWORD:
-    file: ${PWD}/config/lldap/secrets/LLDAP_STORAGE_PASSWORD
+    file: ${HOME}/.config/apperture/lldap/secrets/LLDAP_STORAGE_PASSWORD
 
 services:
   proxy:
@@ -32,9 +32,9 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ./key.pem:/ssl/certs/key.pem
-      - ./cert.pem:/ssl/certs/cert.pem
       - caddy-config:/config
+      - ${HOME}/.config/certs/private_key.pem:/ssl/certs/key.pem
+      - ${HOME}/.config/certs/certificate.pem:/ssl/certs/cert.pem
     networks:
       apperture:
     
