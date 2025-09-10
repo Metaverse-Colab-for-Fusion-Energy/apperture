@@ -68,7 +68,7 @@ session:
   remember_me: '1M'
   cookies:
     - domain: '{{ env "URL"}}'
-      authelia_url: 'https://auth.{{ env "URL"}}'
+      authelia_url: 'https://authelia.{{ env "URL"}}'
       default_redirection_url: 'https://www.{{ env "URL"}}'
       name: 'authelia_session'
       same_site: 'lax'
