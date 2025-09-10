@@ -97,8 +97,6 @@ services:
     container_name: apperture-lldap
     image: nitnelave/lldap:stable
     restart: unless-stopped
-    ports:
-      - 3890:3890
     depends_on:
       lldap-postgres:
         condition: service_healthy
