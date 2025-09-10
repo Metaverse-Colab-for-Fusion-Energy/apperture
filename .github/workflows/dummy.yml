@@ -1,3 +1,5 @@
+permissions: {}
+
 name: Dummy
 on: [push]
 jobs:
