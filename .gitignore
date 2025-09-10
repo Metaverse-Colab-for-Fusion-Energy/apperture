@@ -6,3 +6,4 @@ config/authelia/config/notification.txt
 config/authelia/snippets/authelia-authrequest.conf
 *.pem
 config/homer/config.yml
+config/cloudflared
