@@ -1,5 +1,4 @@
 {
-  "domain": "localtest.me",
   "proxy_hosts": [
     {
       "name": "Home",
@@ -13,7 +12,7 @@
       "ssl": true
     },
     {
-      "name": "Whoami",
+      "name": "WhoAmI",
       "icon": "fa-solid fa-user",
       "group": "Apps",
       "description": "Whoami service for testing",
@@ -32,7 +31,7 @@
       "forward_host": "apperture-ldap",
       "forward_port": 17170,
       "auth": true,
-      "ssl": false
+      "ssl": true
     }
   ]
 }
