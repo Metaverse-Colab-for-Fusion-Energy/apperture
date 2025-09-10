@@ -156,9 +156,8 @@ services:
       dockerfile_inline: |
         FROM python:3.12-alpine
         RUN pip install pyyaml
-        RUN mkdir -p /proxy-bootstrap
-        RUN mkdir -p /configs
-        RUN mkdir -p /app/homer
+        COPY ./homer-bootstrap /app
+        RUN mkdir -p /proxy-bootstrap /configs /app/homer
         ENTRYPOINT ["python3", "/app/configure_homepage.py"]
     container_name: apperture-homer-bootstrap
     environment:
@@ -168,7 +167,6 @@ services:
     networks:
       apperture:
     volumes:
-      - ./homer-bootstrap:/app
       - ./config.json:/proxy-bootstrap/config.json
       - ./config/homer:/configs
 
