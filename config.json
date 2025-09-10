@@ -28,7 +28,7 @@
       "subdomain": "users",
       "group": "Apps",
       "description": "User Management",
-      "forward_host": "apperture-ldap",
+      "forward_host": "apperture-lldap",
       "forward_port": 17170,
       "auth": true,
       "ssl": true
