@@ -177,8 +177,6 @@ networks:
     name: apperture_apperture
 
 volumes:
-  nginx-proxy:
-  nginx-certs:
   lldap-data:
   lldap-postgres-data:
   caddy-config:
