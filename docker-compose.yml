@@ -23,7 +23,7 @@ services:
         RUN apk add jinja2-cli
         COPY config/caddy/Caddyfile.j2 /etc/caddy/Caddyfile.j2
         COPY config.json /etc/caddy/config.json
-        RUN jinja2 /etc/caddy/Caddyfile.j2 /etc/caddy/config.json > /etc/caddy/Caddyfile
+        RUN jinja2 /etc/caddy/Caddyfile.j2 /etc/caddy/config.json -D domain='${URL}' > /etc/caddy/Caddyfile
     container_name: proxy.${URL}
     depends_on:
       - authelia
