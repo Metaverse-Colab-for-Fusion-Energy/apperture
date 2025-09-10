@@ -92,5 +92,5 @@ notifier:
 
 access_control:
   rules:
-    - domain: "*.oliverwoolland.co.uk"
+    - domain: '*.{{ env "URL" }}'
       policy: one_factor
