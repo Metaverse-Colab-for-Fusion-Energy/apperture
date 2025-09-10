@@ -1,9 +1,0 @@
-name: Dummy
-on: [push]
-permissions:
-  contents: none
-jobs:
-  noop:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "No-op workflow"
