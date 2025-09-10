@@ -168,12 +168,11 @@ services:
       homer-bootstrap:
         condition: service_completed_successfully
     volumes:
-      - ./config/homer:/www/assets # Make sure your local config directory exists
+      - ./config/homer:/www/assets
     ports:
       - 8080:8080
-    user: 1000:1000 # default
     environment:
-      - INIT_ASSETS=1 # default, requires the config directory to be writable for the container user (see user option)
+      - INIT_ASSETS=1 
     restart: unless-stopped
     networks:
       apperture:
