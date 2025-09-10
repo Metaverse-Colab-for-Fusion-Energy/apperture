@@ -108,8 +108,8 @@ services:
       LLDAP_JWT_SECRET_FILE: /run/secrets/LLDAP_JWT_SECRET
       LLDAP_LDAP_USER_PASS_FILE: /run/secrets/LLDAP_PASSWORD
       LLDAP_LDAP_BASE_DN: dc=example,dc=com
-      # cn=admin,ou=people,dc=example,dc=com
       LLDAP_DATABASE_URL: postgres://lldap:lldap@lldap-postgres/lldap
+      # Example bind: cn=admin,ou=people,dc=example,dc=com
     volumes:
       - lldap-data:/data
     networks:
