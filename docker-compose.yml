@@ -13,8 +13,6 @@ secrets:
     file: ${PWD}/config/lldap/secrets/LLDAP_PASSWORD
   LLDAP_STORAGE_PASSWORD:
     file: ${PWD}/config/lldap/secrets/LLDAP_STORAGE_PASSWORD
-  PROXY_PASS:
-    file: ${PWD}/config/proxy/secrets/PROXY_PASSWORD
 
 services:
   proxy:
