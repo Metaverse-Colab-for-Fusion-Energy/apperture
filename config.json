@@ -12,7 +12,7 @@
       "ssl": true
     },
     {
-      "name": "Whoami",
+      "name": "WhoAmI",
       "icon": "fa-solid fa-user",
       "group": "Apps",
       "description": "Whoami service for testing",
