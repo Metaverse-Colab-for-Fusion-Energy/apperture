@@ -6,9 +6,7 @@ pass_files=("${HOME}/.config/apperture/lldap/secrets/LLDAP_JWT_SECRET" \
             "${HOME}/.config/apperture/authelia/secrets/AUTHELIA_JWT_SECRET" \
             "${HOME}/.config/apperture/authelia/secrets/AUTHELIA_SESSION_SECRET" \
             "${HOME}/.config/apperture/authelia/secrets/AUTHELIA_STORAGE_ENCRYPTION_KEY" \
-            "${HOME}/.config/apperture/authelia/secrets/AUTHELIA_STORAGE_PASSWORD" \
-            "${HOME}/.config/apperture/casbin/secrets/CASBIN_STORAGE_PASSWORD" \
-            "${HOME}/.config/apperture/proxy/secrets/PROXY_PASSWORD" \
+            "${HOME}/.config/apperture/authelia/secrets/AUTHELIA_STORAGE_PASSWORD"
            )
 
 for file in ${pass_files[@]}
@@ -28,13 +26,6 @@ echo "
  LLDAP admin credentials:
   User: admin
   Pass: $(cat ${HOME}/.config/apperture/lldap/secrets/LLDAP_PASSWORD)
-"
-
-# Echo the proxy password to the console
-echo "
- Proxy credentials:
-  User: $(cat .env | grep PROXY_USER | cut -d '=' -f2)
-  Pass: $(cat ${HOME}/.config/apperture/proxy/secrets/PROXY_PASSWORD)
 "
 
 # replace $URL in config/authelia/snippets/authelia-authrequest.conf with the URL stored in the .env file
