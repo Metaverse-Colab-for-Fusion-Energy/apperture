@@ -12,6 +12,10 @@ server:
     read: '6s'
     write: '6s'
     idle: '30s'      
+  endpoints:
+    authz:
+      forward-auth:
+        implementation: 'ForwardAuth'
 
 log:
   level: 'info'
