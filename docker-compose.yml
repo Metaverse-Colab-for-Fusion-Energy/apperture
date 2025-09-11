@@ -101,6 +101,9 @@ services:
       lldap-postgres:
         condition: service_healthy
     secrets: [LLDAP_JWT_SECRET, LLDAP_PASSWORD, LLDAP_STORAGE_PASSWORD]
+    ports:
+      - 3890:3890
+      - 17170:17170
     environment:
       UID: 1000
       GID: 1000
