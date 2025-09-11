@@ -1,28 +1,28 @@
 theme: light
 
 server:
-  host: 0.0.0.0
-  port: 9091
-  path: ""
+  address: 'tcp://:9091/#'
+  disable_healthcheck: false
   headers:
     csp_template: ""
+  buffers:
+    read: 16384
+    write: 16384
+  timeouts:
+    read: '6s'
+    write: '6s'
+    idle: '30s'      
 
 log:
-  level: debug
-  file_path: /config/authelia.log
+  level: 'info'
+  format: 'text'
+  file_path: ''
   keep_stdout: true
   
-webauthn:
-  disable: false
-  timeout: 60s
-  display_name: Authelia
-  attestation_conveyance_preference: indirect
-  user_verification: preferred
-
 ntp:
-  address: "time.cloudflare.com:123"
-  version: 4
-  max_desync: 3s
+  address: 'udp://time.cloudflare.com:123'
+  version: 3
+  max_desync: '3s'
   disable_startup_check: false
   disable_failure: false
 
@@ -33,14 +33,20 @@ authentication_backend:
   refresh_interval: 5m
 
   ldap:
+    address: 'ldap://apperture-lldap:3890'
+    base_dn: 'dc=example,dc=com'
+    additional_users_dn: 'ou=people'
+    additional_groups_dn: 'ou=groups'
+    user: 'cn=admin,ou=people,dc=example,dc=com'
+    attributes:
+      display_name: cn
+      mail: mail
+      group_name: cn
+    users_filter: "(&({username_attribute}={input})(objectClass=person))"
+    groups_filter: "(member={dn})"
     implementation: custom
     timeout: 5s
     start_tls: false
-    users_filter: (&({username_attribute}={input})(objectClass=person))
-    username_attribute: uid
-    mail_attribute: mail
-    display_name_attribute: displayName
-    groups_filter: (member={dn})
     permit_referrals: false
     permit_unauthenticated_bind: false
 
@@ -55,15 +61,36 @@ password_policy:
     require_special: true
             
 session:
-  name: authelia_session
+  name: 'authelia_session'
   same_site: lax  
+  inactivity: '20m'
+  expiration: '1h'
+  remember_me: '1M'
+  cookies:
+    - domain: '{{ env "URL"}}'
+      authelia_url: 'https://authelia.{{ env "URL"}}'
+      default_redirection_url: 'https://www.{{ env "URL"}}'
+      name: 'authelia_session'
+      same_site: 'lax'
+      inactivity: '5m'
+      expiration: '1h'
+      remember_me: '1d'
 
 storage:
   postgres:
-    schema: public
-    timeout: 5s
+    address: 'tcp://apperture-authelia-postgres:5432'
+    servers: []
+    database: 'authelia'
+    schema: 'public'
+    username: 'authelia'
+    timeout: '5s'
 
 notifier:
   disable_startup_check: false
   filesystem:
-    filename: /config/notification.txt
+    filename: '/config/notification.txt'
+
+access_control:
+  rules:
+    - domain: '*.{{ env "URL" }}'
+      policy: one_factor
