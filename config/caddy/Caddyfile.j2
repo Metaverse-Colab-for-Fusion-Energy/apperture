@@ -6,7 +6,7 @@ authelia.{{ domain }} {
 {{ "https" if site.ssl else "http" }}://{{ site.subdomain }}.{{ domain }} {
     {% if site.auth %}
     forward_auth authelia:9091 {
-        uri /api/authz/forward-auth?authelia_url=https://authelia.{{ domain }}/
+        uri /api/authz/forward-auth
         copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
     }
     {% endif %}
