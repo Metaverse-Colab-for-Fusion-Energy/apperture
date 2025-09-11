@@ -97,4 +97,9 @@ notifier:
 access_control:
   rules:
     - domain: '*.{{ env "URL" }}'
+      resources:
+        - "^/api/upload/hooks.*"
+      policy: bypass
+
+    - domain: '*.{{ env "URL" }}'
       policy: one_factor
