@@ -98,7 +98,7 @@ access_control:
   rules:
     - domain: '*.{{ env "URL" }}'
       resources:
-        - "^/api/upload/hooks.*"
+        - "^/api/upload/resumable_upload/"
       policy: bypass
 
     - domain: '*.{{ env "URL" }}'
