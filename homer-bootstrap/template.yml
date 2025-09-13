@@ -94,21 +94,11 @@ colors:
 # Optional navbar
 # links: [] # Allows for navbar (dark mode, layout, and search) without any links
 links:
-  - name: "MCFE GitHub"
-    icon: "fab fa-github"
-    url: "https://github.com/orgs/Metaverse-Colab-for-Fusion-Energy/repositories"
-    target: "_blank" # optional html tag target attribute
-  - name: "MCFE Project Board"
-    icon: "fas fa-tasks"
-    url: "https://github.com/orgs/Metaverse-Colab-for-Fusion-Energy/projects/6/views/1"
   # - name: "link 2"
   #   icon: "fas fa-book"
   #   url: "https://github.com/bastienwirtz/homer"
   # this will link to a second homer page that will load config from page2.yml and keep default config values as in config.yml file
   # see url field and assets/page.yml used in this example:
-  - name: "Nucleus"
-    icon: "fa-solid fa-server"
-    url: "https://mcfe-nucleus.soe.manchester.ac.uk/"
 
 # Services
 # First level array represents a group.
