@@ -28,11 +28,6 @@ echo "
   Pass: $(cat config/lldap/secrets/LLDAP_PASSWORD)
 "
 
-# replace $URL in config/authelia/snippets/authelia-authrequest.conf with the URL stored in the .env file
-sed "s|\$URL|$(grep URL .env | cut -d '=' -f2)|g" \
-    config/authelia/snippets/authelia-authrequest.conf.template \
-    > config/authelia/snippets/authelia-authrequest.conf
-
 # if URL is localtest.me, generate certificates using mkcert
 DOMAIN=$(cat .env | grep URL | cut -d '=' -f2)
 if [ "$DOMAIN" == "localtest.me" ]; then
