@@ -15,7 +15,6 @@ authelia.{{ domain }} {
     {% endif %}
     reverse_proxy {{ site.forward_host }}:{{ site.forward_port }} {
         {% if "galaxy" in site.subdomain %}
-        @tus path /api/upload/resumable_upload/*
         header_up Tus-Resumable {http.request.header.Tus-Resumable}
         header_up Tus-Version {http.request.header.Tus-Version}
         header_up Tus-Extension {http.request.header.Tus-Extension}
