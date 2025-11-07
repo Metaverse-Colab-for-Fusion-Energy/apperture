@@ -1,3 +1,4 @@
+
 {
   "proxy_hosts": [
     {
@@ -5,16 +6,16 @@
       "subdomain": "home",
       "icon": "fa-solid fa-house",
       "group": "Apps",
-      "description": "Homepage for the apperture server",
+      "description": "Homepage for Randall's server",
       "forward_host": "apperture-homer",
       "forward_port": 8080,
       "auth": false,
       "ssl": true
     },
     {
-      "name": "WhoAmI",
+      "name": "Whoami",
       "icon": "fa-solid fa-user",
-      "group": "Apps",
+      "group": "Admin",
       "description": "Whoami service for testing",
       "subdomain": "whoami",
       "forward_host": "apperture-whoami",
@@ -26,7 +27,7 @@
       "name": "LDAP",
       "icon": "fa-solid fa-users",
       "subdomain": "users",
-      "group": "Apps",
+      "group": "Admin",
       "description": "User Management",
       "forward_host": "apperture-lldap",
       "forward_port": 17170,
