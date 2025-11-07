@@ -176,5 +176,5 @@ networks:
 
 volumes:
   lldap-data:
-  lldap-postgres-data:
+  lldap-postgres:
   caddy-config:
