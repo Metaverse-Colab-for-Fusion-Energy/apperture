@@ -126,7 +126,7 @@ services:
       #POSTGRES_PASSWORD_FILE: /run/secrets/LLDAP_STORAGE_PASSWORD
       POSTGRES_DB: lldap
     volumes:
-      - lldap-postgres-data:/var/lib/postgresql/data
+      - lldap-postgres:/var/lib/postgresql
     networks:
       apperture:
     healthcheck:
