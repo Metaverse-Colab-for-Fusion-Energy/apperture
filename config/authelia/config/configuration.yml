@@ -97,9 +97,4 @@ notifier:
 access_control:
   rules:
     - domain: '*.{{ env "URL" }}'
-      resources:
-        - "^/api/upload/resumable_upload/"
-      policy: bypass
-
-    - domain: '*.{{ env "URL" }}'
       policy: one_factor

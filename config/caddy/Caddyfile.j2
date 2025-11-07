@@ -6,28 +6,14 @@ authelia.{{ domain }} {
 {{ "https" if site.ssl else "http" }}://{{ site.subdomain }}.{{ domain }} {
     {% if site.auth %}
     forward_auth authelia:9091 {
-        uri /api/authz/forward-auth
+        uri /api/authz/forward-auth?authelia_url=https://authelia.{{ domain }}/
         copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
     }
     {% endif %}
     {% if site.ssl %}
     tls /ssl/certs/cert.pem /ssl/certs/key.pem
     {% endif %}
-    reverse_proxy {{ site.forward_host }}:{{ site.forward_port }} {
-        {% if "galaxy" in site.subdomain %}
-        header_up Tus-Resumable {http.request.header.Tus-Resumable}
-        header_up Tus-Version {http.request.header.Tus-Version}
-        header_up Tus-Extension {http.request.header.Tus-Extension}
-        header_up Tus-Max-Size {http.request.header.Tus-Max-Size}
-        header_up Upload-Length {http.request.header.Upload-Length}
-        header_up Upload-Metadata {http.request.header.Upload-Metadata}
-        header_up Upload-Offset {http.request.header.Upload-Offset}
-        header_up Upload-Defer-Length {http.request.header.Upload-Defer-Length}
-        header_up Upload-Concat {http.request.header.Upload-Concat}
-        header_up Upload-Checksum {http.request.header.Upload-Checksum}
-        header_up Upload-Expires {http.request.header.Upload-Expires}
-        {% endif %}
-    }
+    reverse_proxy {{ site.forward_host }}:{{ site.forward_port }}
 }
 {% endfor %}
 
